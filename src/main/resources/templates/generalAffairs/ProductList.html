@@ -3,16 +3,23 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layouts/main}">
 
-<!--title-->
-<th:block layout:fragment="title">품목조회</th:block>
 <th:block layout:fragment="addMore">
     <link rel="stylesheet" type="text/css" th:href="@{/css/generalAffairs/style.css}">
     <link rel="stylesheet" th:href="@{/css/forum/style.css}" type="text/css">
     <script th:src="@{/js/generalAffairs/script.js}"></script>
+
 </th:block>
 
+<style>
+    /* 상단의 페이지 제목 */
+    .page-title {
+        text-shadow: 0 1.5px 2px rgba(0, 0, 0, 0.25);
+        color: #6B4D27;
+    }
+</style>
+
 <main layout:fragment="content">
-    <h3>품목 관리</h3>
+    <h1 class="page-title" style="margin-bottom: 50px;">| 품목 목록</h1>
     <br><br>
     <div>
         <!-- 검색 폼 추가 -->
@@ -28,7 +35,8 @@
             </button>
         </div>
         <br><br>
-        <table>
+
+        <table class="table table-hover">
             <thead>
             <tr>
                 <th>품목 Code</th>
@@ -40,12 +48,11 @@
             </tr>
             </thead>
             <tbody>
-            <tr th:each="p : ${products}">
+            <tr th:each="p : ${products}"
+                th:onclick="'location.href=\'' + @{/general/products/info/{id}(id=${p.productCode})} + '\''"
+                style="cursor:pointer">
                 <td th:text="${p.productCode}">p.productCode</td>
-                <td>
-                    <a th:text="${p.productName}"
-                       th:href="@{/general/products/info/{id}(id=${p.productCode})}">p.name</a>
-                </td>
+                <td th:text="${p.productName}">p.productName</td>
                 <td th:text="${p.productCategory}">카테고리</td>
                 <td th:text="${p.productUnit}">p.unit</td>
                 <td th:text="${p.vendor.vendorName}">거래처 이름</td>
@@ -55,6 +62,8 @@
             </tr>
             </tbody>
         </table>
+
+
         <th:block th:each="page :${#numbers.sequence(startPage,endPage)}">
             <a th:if="${page != nowPage}"
                th:href="@{/general/products/list(page = ${page - 1}, searchKeyword =${param.searchKeyword})}"
@@ -62,7 +71,10 @@
             <!--        param ->쿼리 스트링 중에 특정키워드 가져와서 넘겨줌-->
             <strong th:if="${page == nowPage}" th:text="${page}" style="color: red"></strong>
         </th:block>
-    </div>
 
+
+
+
+    </div>
 </main>
 </html>

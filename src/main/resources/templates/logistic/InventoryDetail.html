@@ -3,15 +3,21 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layouts/main}">
 
-<!--title-->
-
 <th:block layout:fragment="addMore">
     <link rel="stylesheet" type="text/css" th:href="@{/css/logistic/style.css}">
     <script th:src="@{/js/logistic/warehouse/script.js}"></script>
 </th:block>
 
+<style>
+    /* 상단의 페이지 제목 */
+    .page-title {
+        text-shadow: 0 1.5px 2px rgba(0, 0, 0, 0.25);
+        color: #6B4D27;
+    }
+</style>
+
 <main layout:fragment="content">
-    <h1>창고 재고 상세</h1>
+    <h1 class="page-title" style="margin-bottom: 50px;">| 창고 재고 정보 조회</h1>
     <div class="content">
         <div class="small-content">
             <table class="vertical-table">
@@ -30,7 +36,8 @@
                 </tr>
                 <tr>
                     <th>품목 가격</th>
-                    <td th:text="${inventory.productPrice}">p.productCode</td>
+                    <td th:text="${#numbers.formatDecimal(inventory.productPrice, 0, 'COMMA', 0, 'POINT') + ' 원'}"></td>
+
                 </tr>
                 <tr>
                     <th>품목 단위</th>
@@ -38,7 +45,8 @@
                 </tr>
                 <tr>
                     <th>창고 재고 수량</th>
-                    <td th:text="${inventory.productCnt}">p.productCode</td>
+<!--                    <td th:text="${inventory.productCnt}">p.productCode</td>-->
+                    <td style="color: #036635;" th:text="${#numbers.formatDecimal(inventory.productCnt, 0, 'COMMA', 0, 'POINT')}"></td>
                 </tr>
 
                 <tr>
@@ -56,15 +64,13 @@
         </div>
 
         <div class="bottom-button">
-            <a th:href="@{/logistic/stock/warehouse/list}">
-                <button class="commonBtn cancel-button"> 목록으로</button>
-            </a>
             <a th:href="@{/logistic/stock/warehouse/update/{code}(code=${inventory.getProductCode()})}">
-                <button class="commonBtn edit-button"> 수정하기</button>
+                <button class="commonBtn edit-button">수정</button>
+            </a>
+            <a th:href="@{/logistic/stock/warehouse/list}">
+                <button class="commonBtn cancel-button">목록으로</button>
             </a>
         </div>
     </div>
 </main>
-
-
 </html>

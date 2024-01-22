@@ -41,6 +41,8 @@ public class StoreController {
     public String newStoreForm(Model model) {
         List<String> storeAdd = storeService.getStoreManagersNames();
         model.addAttribute("storeManager", storeAdd);
+//        우편번호
+        model.addAttribute("store", new Store());
         return "fina/storeAdd";
     }
 
@@ -50,11 +52,12 @@ public class StoreController {
      * @return
      */
     @PostMapping("/create")
-    public String createStore(@ModelAttribute Store store, @RequestParam("storeManager") String storeManager) {
+    public String createStore(@ModelAttribute("store") Store store, @RequestParam("storeManager") String storeManager) {
         Employee storeEmpName = empRepository.findByEmpName(storeManager);
         store.setEmployee(storeEmpName);
-        log.info(storeEmpName.getEmpName());
+//        log.info(storeEmpName.getEmpName());
         storeService.createStore(store);
+
         return "redirect:/fina/store/list";
     }
 
@@ -67,7 +70,7 @@ public class StoreController {
      */
     @GetMapping("/single/{storeNo}")
     public String showSingleStore(@PathVariable("storeNo") Long storeNo, Model model) {
-        log.info("storeNo ==> " + storeNo); // storeNo를 잘 받았는지 확인하는 로그
+//        log.info("storeNo ==> " + storeNo); // storeNo를 잘 받았는지 확인하는 로그
 //        1. id를 조회해 데이터 가져오기
         Store storeEntity = storeService.findById(storeNo);
 //        2. 모델에 데이터 등록하기
@@ -141,15 +144,22 @@ public class StoreController {
 
         List<String> allStoreManagers = storeService.getAllStoreManagers();
         model.addAttribute("storeManagers", allStoreManagers);
-//        3. 뷰 페이지 설정
+//
+
         return "fina/storeEdit";
     }
 
 
     @PostMapping("/update")
-    public String updateStore(@ModelAttribute Store store, @RequestParam("storeManager") String storeManager) {
+    public String updateStore(@ModelAttribute Store store,
+                              @RequestParam("storeManager") String storeManager) {
+
+        // Employee 객체 설정
         Employee storeEmpName = empRepository.findByEmpName(storeManager);
         store.setEmployee(storeEmpName);
+
+        storeService.updateStore(store);
+
 //        log.info("storeEmpName.getEmpName() ==> " + storeEmpName.getEmpName());
         storeService.updateStore(store);
         return "redirect:/fina/store/single/" + store.getStoreNo();
