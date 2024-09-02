@@ -1,7 +1,7 @@
 package org.kosta.starducks.commons;
 
 import lombok.RequiredArgsConstructor;
-import org.kosta.starducks.commons.notify.NotifyService;
+import org.kosta.starducks.commons.notify.service.NotifyService;
 import org.kosta.starducks.document.entity.DocForm;
 import org.kosta.starducks.document.repository.DocFormRepository;
 import org.kosta.starducks.fina.entity.ContractStatus;
@@ -64,6 +64,7 @@ public class initData implements ApplicationListener<ApplicationReadyEvent> {
     private final ChatRoomRepository chatRoomRepository;
 
     private final NotifyService notifyService;
+
     @Override
     public void onApplicationEvent(ApplicationReadyEvent event) {
         //배포 서버 JVM 시간 설정
@@ -71,35 +72,34 @@ public class initData implements ApplicationListener<ApplicationReadyEvent> {
 
         // 초기 부서 데이터
         List<Department> depts = new ArrayList<>();
-        depts.add(new Department(0, "해당없음","", ""));
-        depts.add(new Department(1, "사장실","boss", "010-1111-1111"));
-        depts.add(new Department(2, "재무부","fina", "010-2222-2222"));
-        depts.add(new Department(3, "총무부","general", "010-3333-3333"));
-        depts.add(new Department(4, "물류유통부","logistic", "010-4444-4444"));
-        depts.add(new Department(5, "인사부","hr", "010-5555-5555"));
+        depts.add(new Department(1, "사장실", "boss", "010-1111-1111"));
+        depts.add(new Department(2, "재무부", "fina", "010-2222-2222"));
+        depts.add(new Department(3, "총무부", "general", "010-3333-3333"));
+        depts.add(new Department(4, "물류유통부", "logistic", "010-4444-4444"));
+        depts.add(new Department(5, "인사부", "hr", "010-5555-5555"));
 
         deptRepository.saveAllAndFlush(depts);
 
         // 초기 사원 데이터
         List<Employee> emps = new ArrayList<>();
         emps.add(Employee.builder().empId(1L).empName("최필립").birth(LocalDate.parse("1985-11-05"))
-                .joinDate(LocalDate.parse("2017-12-25")).email("lib@monster.com").dept(depts.get(1))
+                .joinDate(LocalDate.parse("2017-12-25")).email("lib@monster.com").dept(depts.get(0))
                 .gender("man").position(Position.ROLE_DEPTLEADER).pwd(passwordEncoder.encode("1")).status(false).postNo("08374").addr("서울 구로구 오리로 1063-2")
                 .dAddr("길동빌딩 302호").empTel("010-2344-2345").build());
         emps.add(Employee.builder().empId(2L).empName("배수지").birth(LocalDate.parse("1991-01-25"))
-                .joinDate(LocalDate.parse("2013-12-25")).email("suzi@monster.com").dept(depts.get(2))
+                .joinDate(LocalDate.parse("2013-12-25")).email("suzi@monster.com").dept(depts.get(1))
                 .gender("woman").position(Position.ROLE_EMPLOYEE).pwd(passwordEncoder.encode("1")).status(false).postNo("056936").addr("경기 남양주시 오남읍 양지로대대울1길 4")
                 .dAddr("오리오피스텔 1102호").empTel("010-2644-3457").build());
         emps.add(Employee.builder().empId(3L).empName("이두나").birth(LocalDate.parse("1995-05-30"))
-                .joinDate(LocalDate.parse("2015-12-25")).email("duna@monster.com").dept(depts.get(3))
+                .joinDate(LocalDate.parse("2015-12-25")).email("duna@monster.com").dept(depts.get(2))
                 .gender("woman").position(Position.ROLE_TEAMLEADER).pwd(passwordEncoder.encode("1")).status(false).postNo("08853").addr("서울 서초구 과천대로 786")
                 .dAddr("두나팰리스 A동 1023호").empTel("010-1246-2241").build());
         emps.add(Employee.builder().empId(4L).empName("김길동").birth(LocalDate.parse("1999-04-19"))
-                .joinDate(LocalDate.parse("2021-12-25")).email("kimgil@monster.com").dept(depts.get(4))
+                .joinDate(LocalDate.parse("2021-12-25")).email("kimgil@monster.com").dept(depts.get(3))
                 .gender("man").position(Position.ROLE_EMPLOYEE).pwd(passwordEncoder.encode("1")).status(false).postNo("02866").addr("서울 강서구 강서로 375-7")
                 .dAddr("푸르지오 2차 305동 201호").empTel("010-6789-1384").build());
         emps.add(Employee.builder().empId(5L).empName("최사원").birth(LocalDate.parse("1996-12-02"))
-                .joinDate(LocalDate.parse("2022-12-25")).email("sawon@monster.com").dept(depts.get(5))
+                .joinDate(LocalDate.parse("2022-12-25")).email("sawon@monster.com").dept(depts.get(4))
                 .gender("man").position(Position.ROLE_EMPLOYEE).pwd(passwordEncoder.encode("1")).status(false).postNo("07316").addr("부산 강서구 가락대로 197-1")
                 .dAddr("오리빌라 102호").empTel("010-2347-0663").build());
 
@@ -159,7 +159,7 @@ public class initData implements ApplicationListener<ApplicationReadyEvent> {
         vendor1.setVendorId(1);
         vendor1.setVendorName("빈로스터리");
         vendor1.setVendorBusinessSector(VendorBusinessSector.COFFEEBEANSUPPLIERS);
-        vendor1.setVendorRegistNum("12458921");
+        vendor1.setVendorRegistNum("124-58-92123");
         vendor1.setVendorRepreName("장총명");
         vendor1.setVendorTelephone("010-1212-3434");
         vendor1.setVendorStartDate(LocalDate.parse("2023-08-11"));
@@ -171,7 +171,7 @@ public class initData implements ApplicationListener<ApplicationReadyEvent> {
         vendor2.setVendorId(2);
         vendor2.setVendorName("대성산업");
         vendor2.setVendorBusinessSector(VendorBusinessSector.FARMINGANDCULTIVATION);
-        vendor2.setVendorRegistNum("46952029");
+        vendor2.setVendorRegistNum("469-52-02963");
         vendor2.setVendorRepreName("김찬구");
         vendor2.setVendorTelephone("010-7122-8152");
         vendor2.setVendorStartDate(LocalDate.parse("2023-07-13"));
@@ -281,7 +281,7 @@ public class initData implements ApplicationListener<ApplicationReadyEvent> {
 
         //문서 양식 데이터
         String[] formNames = {"기안서", "지출결의서", "발주서", "휴가신청서", "휴가취소사유서", "매출보고서", "재직증명서"};
-        String[] formNamesEn = {"draft", "b", "orderForm", "d", "e", "f", "empVerification"};
+        String[] formNamesEn = {"draft", "b", "orderForm", "d", "e", "f", "employmentLetter"};
         for (int i = 1; i < 8; i++) {
             DocForm docForm = new DocForm();
             docForm.setFormCode("A0" + i);

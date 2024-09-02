@@ -4,6 +4,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.kosta.starducks.hr.dto.EmpDto;
 import org.kosta.starducks.hr.dto.EmpSearchCond;
 import org.kosta.starducks.hr.entity.Employee;
 import org.kosta.starducks.hr.repository.DeptRepository;
@@ -12,6 +13,7 @@ import org.kosta.starducks.hr.repository.EmpRepository;
 import org.kosta.starducks.hr.service.EmpFileService;
 import org.kosta.starducks.hr.service.EmpService;
 import org.kosta.starducks.roles.Position;
+import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -39,7 +41,11 @@ public class EmpController {
      * @return
      */
     @GetMapping
-    public String index(Model model, EmpSearchCond empSearch) {
+    public String index(@RequestParam(name = "page", required = false) Integer page, Model model, EmpSearchCond empSearch) {
+        if(page == null || page == 0) {
+            page = 1;
+        }
+
         model.addAttribute("empSearch", empSearch);
         System.out.println(empSearch);
 
@@ -47,18 +53,27 @@ public class EmpController {
         System.out.println(emps.stream().toList());
         model.addAttribute("employees", emps);
 
+        int startPage= Math.max(page-4, 1);
+        int endPage= Math.min(page+5, emps.getTotalPages());
+
+        model.addAttribute("nowPage", page);
+        model.addAttribute("employees", emps.getContent());
+        model.addAttribute("totalPages", emps.getTotalPages());
+        model.addAttribute("startPage",startPage);
+        model.addAttribute("endPage",endPage);
+
         return "hr/emp/hrIndex";
     }
 
     /**
      * 사원 등록 get
      *
-     * @param employee
+     * @param dto
      * @param model
      * @return
      */
     @GetMapping("/register")
-    public String register(@ModelAttribute Employee employee, Model model) {
+    public String register(@ModelAttribute EmpDto dto, Model model) {
         // 자동으로 저장되는 사번을 미리 알려줌
         Long id = service.getLastEmpId();
         model.addAttribute("id", id + 1);
@@ -72,24 +87,28 @@ public class EmpController {
     /**
      * 사원등록 및 수정 post
      *
-     * @param employee
+     * @param dto
      * @return
      */
     @PostMapping("/save")
-    public String save(@Valid Employee employee, BindingResult result, Model model,
+    public String save(@Valid EmpDto dto, BindingResult result, Model model,
                        @RequestParam("profile") MultipartFile profile,
                        @RequestParam("stamp") MultipartFile stamp) {
+        // register에서 자동으로 등록되는 아이디
+        Long id = service.getLastEmpId() + 1;
 
         if (result.hasErrors()) {
-//            log.error("result: {}", result.getAllErrors().toString());
-            if(employee.getEmpId() != null) {
+            log.error("result: {}", result.getAllErrors().toString());
+            if(dto.getEmpId() != null) {
+                // update
                 model.addAttribute("name", "edit");
                 model.addAttribute("positions", Position.values());
                 model.addAttribute("depts", deptRepository.findAll());
+
             } else {
+                // register
                 // 자동으로 저장되는 사번을 미리 알려줌
-                Long id = service.getLastEmpId();
-                model.addAttribute("id", id + 1);
+                model.addAttribute("id", id);
                 model.addAttribute("positions", Position.values());
                 model.addAttribute("depts", deptRepository.findAll());
                 model.addAttribute("name", "register");
@@ -97,13 +116,22 @@ public class EmpController {
             return "hr/emp/empWriter";
         }
 
-        Employee savedEmp = service.saveEmp(employee);
-        fileService.upload(profile, "profile", employee.getEmpId());
-        fileService.upload(stamp, "stamp", employee.getEmpId());
+        Employee savedEmp = service.save(dto);
 
-        Long id = savedEmp.getEmpId();
+        if(dto.getEmpId() != null) {
+            // update
+            fileService.upload(profile, "profile", dto.getEmpId());
+            fileService.upload(stamp, "stamp", dto.getEmpId());
+        } else {
+            // register
+            fileService.upload(profile, "profile", id);
+            fileService.upload(stamp, "stamp", id);
+        }
 
-        return "redirect:/hr/emp/" + id;
+
+        Long savedId = savedEmp.getEmpId();
+
+        return "redirect:/hr/emp/" + savedId;
     }
 
     /**
@@ -139,7 +167,10 @@ public class EmpController {
     @GetMapping("/edit/{empId}")
     public String empEdit (@PathVariable("empId") Long empId, Model model) {
         Employee employee = service.getEmp(empId);
-        model.addAttribute("employee", employee);
+        EmpDto dto = new ModelMapper().map(employee, EmpDto.class);
+
+        model.addAttribute("empDto", dto);
+        model.addAttribute("leaveDate", employee.getLeaveDate());
         model.addAttribute("positions", Position.values());
         model.addAttribute("depts", deptRepository.findAll());
         model.addAttribute("name", "edit");

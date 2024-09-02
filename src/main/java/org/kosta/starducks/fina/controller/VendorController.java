@@ -40,10 +40,14 @@ public class VendorController {
      */
     @GetMapping("/new")
     public String newVendorForm(Model model) {
-        log.info("여기는 컨트롤러");
+//        log.info("여기는 컨트롤러");
         VendorAndProductDTO vendorAndProductDTO = new VendorAndProductDTO();
+
+        model.addAttribute("vendor", new VendorAndProductDTO());
+
         model.addAttribute("vendorAndProductDTO", vendorAndProductDTO);
         model.addAttribute("businessSectors", VendorBusinessSector.values());
+        model.addAttribute("contractStatus", ContractStatus.values());
         return "fina/vendorAdd";
     }
 
@@ -55,14 +59,14 @@ public class VendorController {
     }
 
     /**
-     * 거래처 추가 폼 데이터 받기
      *
+     * 거래처 추가 폼 데이터 받기
      * @param vendorAndProductDTO
      * @return
      */
     @PostMapping("/create")
     public String newVendor(VendorAndProductDTO vendorAndProductDTO) {
-        log.info("vendorAndProductDTO.toString() ==> " + vendorAndProductDTO.toString());
+//        log.info("vendorAndProductDTO.toString() ==> " + vendorAndProductDTO.toString());
         // 1. DTO를 엔티티로 변환
         Vendor vendor = VendorEntity(vendorAndProductDTO);
         // 2. 리파지터리로 엔티티를 DB에 저장
@@ -77,7 +81,7 @@ public class VendorController {
      */
     @GetMapping("/single/{vendorId}")
     public String showSingleVendor(@PathVariable("vendorId") int vendorId, Model model) {
-        log.info("vendorId를 잘 받았는지 확인 ==> " + vendorId);
+//        log.info("vendorId를 잘 받았는지 확인 ==> " + vendorId);
 //        1. id를 조회해 데이터 가져오기
         Vendor vendorEntity = vendorService.findById(vendorId);
 //        2. 모델에 데이터 등록하기
@@ -124,8 +128,6 @@ public class VendorController {
         List<Vendor> vendorList = vendorService.findAll();
         model.addAttribute("vendorList", vendorList);
         return "fina/vendorList";
-
-//        return "fina/vendorList";
     }
 
     @GetMapping("/edit/{vendorId}")
@@ -138,12 +140,21 @@ public class VendorController {
             vendor.setVendorBusinessSector(VendorBusinessSector.COFFEEBEANSUPPLIERS);
         }
 //        3. 모델에 데이터 등록하기
+
         model.addAttribute("vendor", vendor);
         model.addAttribute("businessSectors", VendorBusinessSector.values());   // 업종
         model.addAttribute("contractStatus", ContractStatus.values());  // 계약 상태
 //        4. 뷰 페이지 설정하기
         return "fina/vendorEdit";
     }
+
+
+    /**
+     * DTO를 엔티티로 변환
+     */
+//    private Vendor VendorEntity(VendorAndProductDTO vendorAndProductDTO) {
+//        return modelMapper.map(vendorAndProductDTO, Vendor.class);
+//    }
 
     @PostMapping("/update")
     public String updateVendor(VendorAndProductDTO vendorAndProductDTO) {   // 매개변수로 DTO 받아오기

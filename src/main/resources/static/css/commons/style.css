@@ -61,14 +61,30 @@ li {
 }
 input[type="text"],
 input[type="password"],
-input[type="date"] {
+input[type="date"],
+input[type="datetime-local"] {
     border-radius: 10px;
     border: 1px solid #6B4D27;
-    height: 30px;
+    height: 38px;
     box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
     padding: 10px;
     display: block;
 }
+
+input[type="number"] {
+    border-radius: 10px;
+    border: 1px solid #6B4D27;
+    height: 38px;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+select {
+    border-radius: 10px;
+    border: 1px solid #6B4D27;
+    height: 38px;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+}
+
 textarea {
     border-radius: 10px;
     border: 1px solid #6B4D27;
@@ -276,9 +292,8 @@ a p.commonBtn {
 .delete-button:hover {
     background-color: #d91717;
 }
+
 /** ----- 버튼 E ------ */
-
-
 
 .search-button {
     padding: 5px 15px;
@@ -291,4 +306,19 @@ a p.commonBtn {
 
 #profile-box {
     font-size: 14px;
+}
+
+#sideAlert {
+    position: fixed;
+    bottom: 10%;
+    cursor: pointer;
+    right: -350px;
+    padding: 20px;
+    width: 350px;
+    height: auto;
+    overflow: hidden;
+    box-shadow : 0px 5px 3px 4px rgba(0, 0, 0, 0.3);
+    background-color: #f7f8fa;
+    z-index: 10;
+    transition: 0.3s;
 }
