@@ -16,9 +16,6 @@ window.document.addEventListener("DOMContentLoaded", function() {
 
     function handleClick(e) {
         e.preventDefault()
-        console.log("버튼 눌림")
-
-
 
         let item = {
             storeNo: storeSelect.value,
@@ -69,14 +66,14 @@ window.document.addEventListener("DOMContentLoaded", function() {
         e.preventDefault();
 
         Swal.fire({
-            title: '입고 등록 확인',
-            text: '입고 등록 하시겠습니까?',
+            title: 'Inbound Registration Confirmation',
+            text: 'Would you like to register the inbound shipment?',
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
-            confirmButtonText: '확인',
-            cancelButtonText: '취소'
+            confirmButtonText: 'Confirm',
+            cancelButtonText: 'Cancel'
         }).then((result) => {
             if (result.isConfirmed) {
 

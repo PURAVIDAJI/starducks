@@ -82,26 +82,27 @@ public class initData implements ApplicationListener<ApplicationReadyEvent> {
 
         // 초기 사원 데이터
         List<Employee> emps = new ArrayList<>();
-        emps.add(Employee.builder().empId(1L).empName("최필립").birth(LocalDate.parse("1985-11-05"))
+        emps.add(Employee.builder().empId(1L).empName("Sam Kim").birth(LocalDate.parse("1985-11-05"))
                 .joinDate(LocalDate.parse("2017-12-25")).email("lib@monster.com").dept(depts.get(1))
-                .gender("man").position(Position.ROLE_DEPTLEADER).pwd(passwordEncoder.encode("1")).status(false).postNo("08374").addr("서울 구로구 오리로 1063-2")
-                .dAddr("길동빌딩 302호").empTel("010-2344-2345").build());
-        emps.add(Employee.builder().empId(2L).empName("배수지").birth(LocalDate.parse("1991-01-25"))
+                .gender("man").position(Position.ROLE_DEPTLEADER).pwd(passwordEncoder.encode("1")).status(false).postNo("22903").addr("2102 Arlington Blvd")
+                .dAddr("Charlottesville, VA").empTel("434-144-2345").build());
+        emps.add(Employee.builder().empId(2L).empName("\t\n" +
+                        "Ella williams").birth(LocalDate.parse("1991-01-25"))
                 .joinDate(LocalDate.parse("2013-12-25")).email("suzi@monster.com").dept(depts.get(2))
-                .gender("woman").position(Position.ROLE_EMPLOYEE).pwd(passwordEncoder.encode("1")).status(false).postNo("056936").addr("경기 남양주시 오남읍 양지로대대울1길 4")
-                .dAddr("오리오피스텔 1102호").empTel("010-2644-3457").build());
-        emps.add(Employee.builder().empId(3L).empName("이두나").birth(LocalDate.parse("1995-05-30"))
+                .gender("woman").position(Position.ROLE_EMPLOYEE).pwd(passwordEncoder.encode("1")).status(false).postNo("22911").addr("2159 Saranac Ct")
+                .dAddr("Charlottesville, VA").empTel("434-644-3457").build());
+        emps.add(Employee.builder().empId(3L).empName("Amy Lang").birth(LocalDate.parse("1995-05-30"))
                 .joinDate(LocalDate.parse("2015-12-25")).email("duna@monster.com").dept(depts.get(3))
-                .gender("woman").position(Position.ROLE_TEAMLEADER).pwd(passwordEncoder.encode("1")).status(false).postNo("08853").addr("서울 서초구 과천대로 786")
-                .dAddr("두나팰리스 A동 1023호").empTel("010-1246-2241").build());
-        emps.add(Employee.builder().empId(4L).empName("김길동").birth(LocalDate.parse("1999-04-19"))
+                .gender("woman").position(Position.ROLE_TEAMLEADER).pwd(passwordEncoder.encode("1")).status(false).postNo("23226").addr("1603 Treboy Ave")
+                .dAddr("Richmond, VA").empTel("434-246-2241").build());
+        emps.add(Employee.builder().empId(4L).empName("Aiden Smith").birth(LocalDate.parse("1999-04-19"))
                 .joinDate(LocalDate.parse("2021-12-25")).email("kimgil@monster.com").dept(depts.get(4))
-                .gender("man").position(Position.ROLE_EMPLOYEE).pwd(passwordEncoder.encode("1")).status(false).postNo("02866").addr("서울 강서구 강서로 375-7")
-                .dAddr("푸르지오 2차 305동 201호").empTel("010-6789-1384").build());
-        emps.add(Employee.builder().empId(5L).empName("최사원").birth(LocalDate.parse("1996-12-02"))
+                .gender("man").position(Position.ROLE_EMPLOYEE).pwd(passwordEncoder.encode("1")).status(false).postNo("22205").addr("1918 N Jefferson St")
+                .dAddr("Arlington, VA").empTel("434-789-1384").build());
+        emps.add(Employee.builder().empId(5L).empName("Benjamin Brown").birth(LocalDate.parse("1996-12-02"))
                 .joinDate(LocalDate.parse("2022-12-25")).email("sawon@monster.com").dept(depts.get(5))
-                .gender("man").position(Position.ROLE_EMPLOYEE).pwd(passwordEncoder.encode("1")).status(false).postNo("07316").addr("부산 강서구 가락대로 197-1")
-                .dAddr("오리빌라 102호").empTel("010-2347-0663").build());
+                .gender("man").position(Position.ROLE_EMPLOYEE).pwd(passwordEncoder.encode("1")).status(false).postNo("20036").addr("1756 Church St NW")
+                .dAddr("Washington, DC").empTel("434-347-0663").build());
 
         repository.saveAllAndFlush(emps);
 
@@ -110,13 +111,13 @@ public class initData implements ApplicationListener<ApplicationReadyEvent> {
         specificEmp.setEmpId(11L); // empId를 11로 설정
         specificEmp.setStatus(false);
         specificEmp.setBirth(LocalDate.parse("2023-12-20"));
-        specificEmp.setEmpTel("010-9999-9990");
+        specificEmp.setEmpTel("434-119-9990");
         specificEmp.setGender("man");
         specificEmp.setEmail("lhg0529@gmail.com");
-        specificEmp.setAddr("수원시");
-        specificEmp.setEmpName("이현기");
-        specificEmp.setPostNo("00025");
-        specificEmp.setDAddr("권선구");
+        specificEmp.setAddr("32 University Cir");
+        specificEmp.setEmpName("Robert Hong");
+        specificEmp.setPostNo("22903");
+        specificEmp.setDAddr("Charlottesville, VA");
         specificEmp.setPosition(Position.ROLE_STOREMANAGER);
         specificEmp.setJoinDate(LocalDate.parse("2022-12-20"));
         specificEmp.setDept(deptRepository.findById(4).orElse(null));
@@ -126,56 +127,44 @@ public class initData implements ApplicationListener<ApplicationReadyEvent> {
 
 //        마스터 계정
         Employee masterEmp = new Employee();
-        masterEmp.setEmpId(1004L); // empId를 11로 설정
+        masterEmp.setEmpId(1004L);
         masterEmp.setStatus(false);
-        masterEmp.setBirth(LocalDate.parse("2023-08-09"));
-        masterEmp.setEmpTel("010-1004-1004");
+        masterEmp.setBirth(LocalDate.parse("2000-08-09"));
+        masterEmp.setEmpTel("434-992-1194");
         masterEmp.setGender("woman");
         masterEmp.setEmail("lhg0529@gmail.com");
-        masterEmp.setAddr("성남시");
-        masterEmp.setEmpName("나보스");
-        masterEmp.setPostNo("00025");
-        masterEmp.setDAddr("분당구");
+        masterEmp.setAddr("285 Peyton Ct");
+        masterEmp.setEmpName("Inji Kim");
+        masterEmp.setPostNo("22903");
+        masterEmp.setDAddr("Charlottesville, VA");
         masterEmp.setPosition(Position.ROLE_BOSS);
         masterEmp.setJoinDate(LocalDate.parse("2022-12-20"));
         masterEmp.setDept(deptRepository.findById(1).orElse(null));
         masterEmp.setPwd(passwordEncoder.encode("1004"));
         repository.saveAndFlush(masterEmp);
 
-        //초기 vendor 데이터
-//        for(int i = 0; i < 5; i++) {
-//            Vendor vendor = new Vendor();
-//            vendor.setVendorName("거래처" + i);
-//            vendor.setVendorRegistNum("11"+i);
-//            vendor.setVendorRepreName("repre"+i);
-//            vendor.setVendorTelephone("010-9993-999"+i);
-//            vendor.setVendorStartDate(LocalDate.parse("2023-11-11"));
-//            vendor.setVendorAddress("용인시");
-//
-//            vendorRepository.saveAndFlush(vendor);
-//        }
 
         Vendor vendor1 = new Vendor();
         vendor1.setVendorId(1);
-        vendor1.setVendorName("빈로스터리");
+        vendor1.setVendorName("Aromatic Beans");
         vendor1.setVendorBusinessSector(VendorBusinessSector.COFFEEBEANSUPPLIERS);
         vendor1.setVendorRegistNum("12458921");
-        vendor1.setVendorRepreName("장총명");
-        vendor1.setVendorTelephone("010-1212-3434");
+        vendor1.setVendorRepreName("Alicia Lee");
+        vendor1.setVendorTelephone("434-212-3434");
         vendor1.setVendorStartDate(LocalDate.parse("2023-08-11"));
-        vendor1.setVendorAddress("서울시 중구 장충동");
+        vendor1.setVendorAddress("4314 Newton St, Bladensburg, MD");
         vendor1.setContractStatus(ContractStatus.CONTRACT_ACTIVE);
         vendorRepository.saveAndFlush(vendor1);
 
         Vendor vendor2 = new Vendor();
         vendor2.setVendorId(2);
-        vendor2.setVendorName("대성산업");
+        vendor2.setVendorName("P Plus Packaging");
         vendor2.setVendorBusinessSector(VendorBusinessSector.FARMINGANDCULTIVATION);
         vendor2.setVendorRegistNum("46952029");
-        vendor2.setVendorRepreName("김찬구");
-        vendor2.setVendorTelephone("010-7122-8152");
+        vendor2.setVendorRepreName("Cherry Brown");
+        vendor2.setVendorTelephone("434-722-8152");
         vendor2.setVendorStartDate(LocalDate.parse("2023-07-13"));
-        vendor2.setVendorAddress("부산시 동래구 사직동");
+        vendor2.setVendorAddress("4264 Entre Ct Suite L, Chantilly, VA");
         vendor2.setContractStatus(ContractStatus.CONTRACT_STOPPED);
         vendorRepository.saveAndFlush(vendor2);
 
@@ -185,7 +174,7 @@ public class initData implements ApplicationListener<ApplicationReadyEvent> {
         product1.setProductCode(1L);
         product1.setProductSelling(true);
         product1.setProductPrice((long) 75000);
-        product1.setProductName("콜롬비아 부에나 비스타 게이샤");
+        product1.setProductName("Colombian Buena Vista Geisha");
         product1.setVendor(vendor1);
         product1.setProductCategory(ProductCategory.cate1);
         product1.setProductUnit(ProductUnit.KG);
@@ -195,7 +184,7 @@ public class initData implements ApplicationListener<ApplicationReadyEvent> {
         product2.setProductCode(2L);
         product2.setProductSelling(true);
         product2.setProductPrice((long) 15000);
-        product2.setProductName("브라질 세하도 싱글원두");
+        product2.setProductName("Brazil Cerrado Single-Origin");
         product2.setVendor(vendor1);
         product2.setProductCategory(ProductCategory.cate1);
         product2.setProductUnit(ProductUnit.KG);
@@ -205,7 +194,7 @@ public class initData implements ApplicationListener<ApplicationReadyEvent> {
         product3.setProductCode(3L);
         product3.setProductSelling(false);
         product3.setProductPrice((long) 29000);
-        product3.setProductName("에티오피아 예가체프 코케허니 원두");
+        product3.setProductName("Ethiopia Yirgacheffe Koke Honey");
         product3.setVendor(vendor1);
         product3.setProductCategory(ProductCategory.cate1);
         product3.setProductUnit(ProductUnit.KG);
@@ -215,7 +204,7 @@ public class initData implements ApplicationListener<ApplicationReadyEvent> {
         product4.setProductCode(4L);
         product4.setProductSelling(true);
         product4.setProductPrice((long) 4200);
-        product4.setProductName("14온스 PET 투명컵");
+        product4.setProductName("14oz PET Clear Cup");
         product4.setVendor(vendor2);
         product4.setProductCategory(ProductCategory.cate2);
         product4.setProductUnit(ProductUnit.HUNDRED_EA);
@@ -225,7 +214,7 @@ public class initData implements ApplicationListener<ApplicationReadyEvent> {
         product5.setProductCode(5L);
         product5.setProductSelling(true);
         product5.setProductPrice((long) 4000);
-        product5.setProductName("9온스 PET 투명컵");
+        product5.setProductName("9oz PET Clear Cup");
         product5.setVendor(vendor2);
         product5.setProductCategory(ProductCategory.cate2);
         product5.setProductUnit(ProductUnit.HUNDRED_EA);
@@ -235,7 +224,7 @@ public class initData implements ApplicationListener<ApplicationReadyEvent> {
         product6.setProductCode(6L);
         product6.setProductSelling(true);
         product6.setProductPrice((long) 3900);
-        product6.setProductName("16온스 흰색 무지 커피컵");
+        product6.setProductName("16oz Plain White Coffee Cup");
         product6.setVendor(vendor2);
         product6.setProductCategory(ProductCategory.cate2);
         product6.setProductUnit(ProductUnit.HUNDRED_EA);
@@ -246,35 +235,35 @@ public class initData implements ApplicationListener<ApplicationReadyEvent> {
         Store store = new Store();
         store.setStoreNo(1L);
         store.setEmployee(specificEmp);
-        store.setStoreName("미금역점");
+        store.setStoreName("Arlington Branch");
         store.setBusinessNum(1148600675L);
         DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         LocalDate date = LocalDate.parse("2023-08-08", dateFormat);
         store.setStoreOpenDate(date);
-        store.setAddNo("05704");
-        store.setStoreAddr("경기도 성남시 분당구 ");
-        store.setStoreDetailAddr("금곡동 168");
+        store.setAddNo("22203");
+        store.setStoreAddr("521 N Quincy St");
+        store.setStoreDetailAddr("Arlington, VA");
         store.setStoreOperationalYn(StoreOperationalYn.storeOperationalY);
         storeService.createStore(store);
 
-        // 초기 게시글 데이터
+        // Initial post data
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         for (int i = 0; i < 2; i++) {
             List<ForumPost> posts = new ArrayList<>();
-            posts.add(ForumPost.builder().postDate(LocalDateTime.parse("2023-12-07 00:00:00", dtf)).postTitle("건의사항과 개선 아이디어를 모아봅시다")
-                    .postContent("모집양식은 각 부서 팀장에게 문의바랍니다.").employee(emps.get(1)).postNotice(true).build());
-            posts.add(ForumPost.builder().postDate(LocalDateTime.parse("2023-12-07 00:00:00", dtf)).postTitle("회사 이벤트 및 축하 메시지 모음")
-                    .postContent("모집양식은 각 부서 팀장에게 문의바랍니다.").employee(emps.get(2)).postNotice(true).build());
-            posts.add(ForumPost.builder().postDate(LocalDateTime.parse("2023-12-03 00:00:00", dtf)).postTitle("프로젝트 기술 리뷰 및 피드백 모집")
-                    .postContent("모집양식은 각 부서 팀장에게 문의바랍니다.").employee(emps.get(3)).postNotice(false).build());
-            posts.add(ForumPost.builder().postDate(LocalDateTime.parse("2023-12-20 00:00:00", dtf)).postTitle("팀 전체 회식 아이디어 모집")
-                    .postContent("모집양식은 각 부서 팀장에게 문의바랍니다.").employee(emps.get(4)).postNotice(false).build());
-            posts.add(ForumPost.builder().postDate(LocalDateTime.parse("2022-11-30 00:00:00", dtf)).postTitle("최근 경험한 기술적인 도전과 해결")
-                    .postContent("모집양식은 각 부서 팀장에게 문의바랍니다.").employee(emps.get(0)).postNotice(false).build());
-            posts.add(ForumPost.builder().postDate(LocalDateTime.parse("2021-10-02 00:00:00", dtf)).postTitle("회사 문화 개선을 위한 아이디어 제안")
-                    .postContent("모집양식은 각 부서 팀장에게 문의바랍니다.").employee(emps.get(1)).postNotice(false).build());
-            posts.add(ForumPost.builder().postDate(LocalDateTime.parse("2022-08-17 00:00:00", dtf)).postTitle("2024 사내기숙사 입주자 모집")
-                    .postContent("모집양식은 각 부서 팀장에게 문의바랍니다.").employee(emps.get(3)).postNotice(false).build());
+            posts.add(ForumPost.builder().postDate(LocalDateTime.parse("2023-12-07 00:00:00", dtf)).postTitle("Gathering Suggestions")
+                    .postContent("Please contact your department team leader for the application form.").employee(emps.get(1)).postNotice(true).build());
+            posts.add(ForumPost.builder().postDate(LocalDateTime.parse("2023-12-07 00:00:00", dtf)).postTitle("Company Events")
+                    .postContent("Please contact your department team leader for the application form.").employee(emps.get(2)).postNotice(true).build());
+            posts.add(ForumPost.builder().postDate(LocalDateTime.parse("2023-12-03 00:00:00", dtf)).postTitle("Project Technical Review")
+                    .postContent("Please contact your department team leader for the application form.").employee(emps.get(3)).postNotice(false).build());
+            posts.add(ForumPost.builder().postDate(LocalDateTime.parse("2023-12-20 00:00:00", dtf)).postTitle("Team Dinner Idea Collection")
+                    .postContent("Please contact your department team leader for the application form.").employee(emps.get(4)).postNotice(false).build());
+            posts.add(ForumPost.builder().postDate(LocalDateTime.parse("2022-11-30 00:00:00", dtf)).postTitle("Recent Technical Solutions")
+                    .postContent("Please contact your department team leader for the application form.").employee(emps.get(0)).postNotice(false).build());
+            posts.add(ForumPost.builder().postDate(LocalDateTime.parse("2021-10-02 00:00:00", dtf)).postTitle("Ideas for Improving Company Culture")
+                    .postContent("Please contact your department team leader for the application form.").employee(emps.get(1)).postNotice(false).build());
+            posts.add(ForumPost.builder().postDate(LocalDateTime.parse("2022-08-17 00:00:00", dtf)).postTitle("2024 Company Dorm Resident")
+                    .postContent("Please contact your department team leader for the application form.").employee(emps.get(3)).postNotice(false).build());
 
             forumPostRepository.saveAllAndFlush(posts);
         }

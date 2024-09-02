@@ -35,42 +35,42 @@ public class MenuService {
         // 게시판 하위 메뉴
         switch (code) {
             case "mypage":
-                menus.add(new MenuDetail("attendance", "근태관리", "/mypage/attendance"));
-                menus.add(new MenuDetail("schedule", "일정관리", "/mypage/schedule/show"));
-                menus.add(new MenuDetail("conf", "회의실 예약", "/mypage/conf"));
+                menus.add(new MenuDetail("attendance", "Attendance", "/mypage/attendance"));
+                menus.add(new MenuDetail("schedule", "Schedule", "/mypage/schedule/show"));
+                menus.add(new MenuDetail("conf", "Room Booking", "/mypage/conf"));
                 break;
             case "document":
-                menus.add(new MenuDetail("createDoc", "결재문서 작성", "/document/createDoc"));
-                menus.add(new MenuDetail("submitDoc", "결재 상신함", "/document/submitDoc"));
-                menus.add(new MenuDetail("receiveDoc", "결재 수신함", "/document/receiveDoc"));
-                menus.add(new MenuDetail("tempList", "임시저장함", "/document/tempList"));
+                menus.add(new MenuDetail("createDoc", "Create Document", "/document/createDoc"));
+                menus.add(new MenuDetail("submitDoc", "Approval Request", "/document/submitDoc"));
+                menus.add(new MenuDetail("receiveDoc", "Approval Inbox", "/document/receiveDoc"));
+                menus.add(new MenuDetail("tempList", "Drafts", "/document/tempList"));
                 break;
             case "hr":
-                menus.add(new MenuDetail("emp", "사원 관리", "/hr/emp"));
-                menus.add(new MenuDetail("attend", "근태 관리", "/hr/attend"));
-                menus.add(new MenuDetail("vacation", "휴가 관리", "/"));
-                menus.add(new MenuDetail("dept", "부서 관리", "/hr/dept"));
-                menus.add(new MenuDetail("docu", "문서 관리", "/"));
+                menus.add(new MenuDetail("emp", "Staff", "/hr/emp"));
+                menus.add(new MenuDetail("attend", "Staff-Attendance", "/hr/attend"));
+                menus.add(new MenuDetail("vacation", "Staff-Leave", "/"));
+                menus.add(new MenuDetail("dept", "Department", "/hr/dept"));
+                menus.add(new MenuDetail("docu", "Document", "/"));
                 break;
             case "logistic":
-                menus.add(new MenuDetail("inbound", "입고 관리", "/logistic/inbound/warehouse/list"));
-                menus.add(new MenuDetail("outbound", "출고 관리", "/logistic/outbound/warehouse/list"));
-                menus.add(new MenuDetail("stock", "재고 관리", "/logistic/stock/warehouse/list"));
+                menus.add(new MenuDetail("inbound", "Inbound", "/logistic/inbound/warehouse/list"));
+                menus.add(new MenuDetail("outbound", "Outbound", "/logistic/outbound/warehouse/list"));
+                menus.add(new MenuDetail("stock", "Inventory", "/logistic/stock/warehouse/list"));
                 break;
             case "general":
-                menus.add(new MenuDetail("schedule", "전사 일정 관리", "/general/schedule"));
-                menus.add(new MenuDetail("adforum", "게시판 관리", "/"));
-                menus.add(new MenuDetail("adconf", "회의실 관리", "/"));
-                menus.add(new MenuDetail("products", "품목 관리", "/general/products/list"));
+                menus.add(new MenuDetail("schedule", "Schedule", "/general/schedule"));
+                menus.add(new MenuDetail("adforum", "E-Board Management", "/"));
+                menus.add(new MenuDetail("adconf", "Room Management", "/"));
+                menus.add(new MenuDetail("products", "Items", "/general/products/list"));
                 break;
             case "fina" :
-                menus.add(new MenuDetail("store", "지점 정보 관리", "/fina/store/list"));
-                menus.add(new MenuDetail("vendor", "거래처 정보 관리", "/fina/vendor/list"));
+                menus.add(new MenuDetail("store", "Branch Info", "/fina/store/list"));
+                menus.add(new MenuDetail("vendor", "Vendor Info", "/fina/vendor/list"));
                 break;
             default:
-                menus.add(new MenuDetail("attendance", "근태관리", "/mypage/attendance"));
-                menus.add(new MenuDetail("schedule", "일정관리", "/mypage/schedule"));
-                menus.add(new MenuDetail("confroom", "회의실 예약", "/mypage/conf"));
+                menus.add(new MenuDetail("attendance", "Attendance", "/mypage/attendance"));
+                menus.add(new MenuDetail("schedule", "Schedule", "/mypage/schedule"));
+                menus.add(new MenuDetail("confroom", "Room Booking", "/mypage/conf"));
         }
 //        if (code.equals("mypage")) {
 //        } else if (code.equals("document")) {

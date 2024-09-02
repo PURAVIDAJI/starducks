@@ -3,7 +3,7 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       xmlns:th="http://www.thymeleaf.org">
 
-<title layout:fragment="title">전사 게시판</title>
+<title layout:fragment="title">Corporate Bulletin Board</title>
 
 <th:block layout:fragment="addMore">
 
@@ -13,17 +13,17 @@
 </th:block>
 
 <main layout:fragment="content">
-  <h1>전사 게시판</h1>
+  <h1>Corporate Bulletin Board</h1>
 
   <!-- 전체 글 보기 링크 -->
   <div class="forum-header">
     <div class="view-all-posts">
-      <a class="listBtn" href="/forum" th:href="@{/forum}">전체 글 보기</a>
+      <a class="listBtn" href="/forum" th:href="@{/forum}">View all</a>
     </div>
     <!-- 검색창. 제목 + 내용 검색 가능 -->
     <form class="search-form" method="get" th:action="@{/forum}">
-      <input name="searchKeyword" placeholder="검색어 입력" type="text">
-      <button type="submit">검색</button>
+      <input name="searchKeyword" placeholder="Input search keyword" type="text">
+      <button type="submit">Search</button>
     </form>
   </div>
 
@@ -32,11 +32,11 @@
     <thead>
     <tr>
       <th>No</th>
-      <th>카테고리</th>
-      <th>제목</th>
-      <th>작성자</th>
-      <th>작성일</th>
-      <th>조회수</th>
+      <th>Category</th>
+      <th>Title</th>
+      <th>Author</th>
+      <th>Date Created</th>
+      <th>Views</th>
     </tr>
     </thead>
     <tbody>
@@ -46,10 +46,10 @@
           style="cursor:pointer">
         <td th:text="${notice.postId}">ID</td>
         <td>공지</td>
-        <td th:text="${notice.postTitle}">제목</td>
-        <td th:text="${notice.employee?.empName} ?: '로그인 필요'">작성자</td>
-        <td th:text="${#temporals.format(notice.postDate, 'yyyy.MM.dd')}">작성일</td>
-        <td th:text="${notice.postView}">조회수</td>
+        <td th:text="${notice.postTitle}">Title</td>
+        <td th:text="${notice.employee?.empName} ?: '로그인 필요'">Author</td>
+        <td th:text="${#temporals.format(notice.postDate, 'yyyy.MM.dd')}">Date Created</td>
+        <td th:text="${notice.postView}">Views</td>
       </tr>
     </th:block>
     <!-- 전체 게시글 목록 (공지 포함) -->
@@ -57,11 +57,11 @@
       <tr th:onclick="'location.href=\'' + @{/forum/post/{id}(id=${post.postId})} + '\''"
           style="cursor:pointer">
         <td th:text="${post.postId}">ID</td>
-        <td th:text="${post.postNotice} ? '공지' : '일반'">카테고리</td>
-        <td th:text="${post.postTitle}">제목</td>
-        <td th:text="${post.employee?.empName} ?: '로그인 필요'">작성자</td>
-        <td th:text="${#temporals.format(post.postDate, 'yyyy.MM.dd')}">작성일</td>
-        <td th:text="${post.postView}">조회수</td>
+        <td th:text="${post.postNotice} ? '공지' : '일반'">Category</td>
+        <td th:text="${post.postTitle}">Title</td>
+        <td th:text="${post.employee?.empName} ?: '로그인 필요'">Author</td>
+        <td th:text="${#temporals.format(post.postDate, 'yyyy.MM.dd')}">Date Created</td>
+        <td th:text="${post.postView}">Views</td>
       </tr>
     </th:block>
     </tbody>
@@ -69,7 +69,7 @@
 
   <!-- 글쓰기 버튼 -->
   <div class="add-post">
-    <a class="commonBtn register-button" href="/forum/add">+ 글쓰기</a>
+    <a class="commonBtn register-button" href="/forum/add">+ Write Post</a>
   </div>
 
   <!-- 페이지네이션 -->

@@ -21,6 +21,9 @@ public class CustomUserDetails implements UserDetails {
   private Employee employee;
 
   public CustomUserDetails(Employee employee) {
+    if (employee == null) {
+      throw new IllegalArgumentException("Employee cannot be null");
+    }
     this.employee = employee;
   }
 
@@ -55,7 +58,7 @@ public Collection<? extends GrantedAuthority> getAuthorities() {
 
   @Override
   public String getUsername() {
-    return String.valueOf(employee.getEmpId());
+    return employee.getEmpId().toString();
   }
 
   @Override //계정이 만료되었는가?
@@ -76,5 +79,9 @@ public Collection<? extends GrantedAuthority> getAuthorities() {
   @Override // status가 false면(퇴사하지 않았으면) 계정을 활성화된 것으로 간주
   public boolean isEnabled() {
     return !employee.isStatus();
+  }
+
+  public Employee getEmployee() {
+    return employee;
   }
 }

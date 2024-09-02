@@ -3,7 +3,7 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       xmlns:th="http://www.thymeleaf.org">
 
-<title layout:fragment="title">게시글 상세</title>
+<title layout:fragment="title">Post Details</title>
 
 <th:block layout:fragment="addMore">
 
@@ -14,27 +14,27 @@
 
 <main layout:fragment="content">
   <div class="detail-page-container" th:object="${post}">
-    <p class="detail-page-title">게시글 상세정보</p>
+    <p class="detail-page-title">Post Details</p>
     <div class="detail-content-section">
       <!-- 게시글 상세 정보 표시 -->
       <div class="detail-info-table">
         <table>
           <tr>
-            <th>제목</th>
+            <th>Title</th>
             <td th:text="${post.postTitle}">조회수 데이터</td>
-            <th>조회수</th>
+            <th>Views</th>
             <td class="views" th:text="${post.postView}">조회수 데이터</td>
           </tr>
           <tr>
-            <th>작성자</th>
+            <th>Author</th>
             <td th:text="${post.employee != null ? post.employee.empName : '작성자 정보 없음'}">작성자 데이터</td>
-            <th>작성 시간</th>
+            <th>Created on</th>
             <td class="timestamp" th:text="${#temporals.format(post.postDate, 'yyyy-MM-dd HH:mm')}">작성 시간
               데이터
             </td>
           </tr>
           <tr>
-            <th>내용</th>
+            <th>Contents</th>
             <!--  utext로 불러서 html 태그가 적용된 상태로 글 내용이 보여진다-->
             <td colspan="3">
               <div class="detail-post-content" th:utext="${post.postContent}">글 내용</div>
@@ -45,8 +45,8 @@
 
       <!--            댓글 입력 폼          -->
       <form method="post" th:action="@{/forum/post/{id}/addComment(id=${post.postId})}">
-        <textarea class="detail-comment-input" name="commentContent" placeholder="댓글을 입력하세요."></textarea>
-        <button class="fcommonBtn fregister-button" type="submit">등록</button>
+        <textarea class="detail-comment-input" name="commentContent" placeholder="Enter your comment"></textarea>
+        <button class="fcommonBtn fregister-button" type="submit">Submit</button>
       </form>
 
       <!--            댓글 목록. 댓글이 있으면 댓글마다 수정, 삭제 버튼이 생성된다       -->
@@ -68,7 +68,7 @@
             <input name="postId" th:value="${post.postId}" type="hidden">
             <textarea name="commentContent"
                       th:id="'edit-comment-textarea-' + ${comment.commentId}"></textarea>
-            <button class="fcommonBtn fregister-button" type="submit">저장</button>
+            <button class="fcommonBtn fregister-button" type="submit">Save</button>
           </form>
           <!-- 댓글 수정/삭제 버튼. 로그인한 사용자와 댓글 작성자가 일치할 때만 표시 -->
           <div th:if="${comment.employee != null and #authentication != null and #authentication.principal != null}">
@@ -94,14 +94,14 @@
       <div
           th:if="${post.employee != null and #authentication != null and #authentication.principal != null and post.employee.empId.toString == #authentication.principal.username}">
         <a th:href="@{/forum/edit/{id}(id=${post.postId})}">
-          <button class="commonBtn edit-button">수정</button>
+          <button class="commonBtn edit-button">Edit</button>
         </a>
         <a th:href="@{/forum/delete/{id}(id=${post.postId})}" th:onclick="'return confirm(\'정말 삭제하시겠습니까?\');'">
-          <button class="commonBtn delete-button">삭제</button>
+          <button class="commonBtn delete-button">Delete</button>
         </a>
       </div>
       <a href="/forum">
-        <button class="commonBtn cancel-button">목록</button>
+        <button class="commonBtn cancel-button">List</button>
       </a>
     </div>
   </div>

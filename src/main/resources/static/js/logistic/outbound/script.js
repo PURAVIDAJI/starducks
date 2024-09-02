@@ -32,8 +32,8 @@ window.document.addEventListener("DOMContentLoaded", function() {
 
             Swal.fire({
                 icon: "error",
-                title: "재고 부족",
-                text: "선택하신 품목의 재고수량은 "+ itemStock+"개 입니다."
+                title: "Stock Shortage",
+                text: "The stock quantity for the selected item is "+ itemStock+" units."
 
             });
             return;

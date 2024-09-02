@@ -23,7 +23,7 @@ window.document.addEventListener("DOMContentLoaded", function() {
         if (!productSelect.value ) {
             Swal.fire({
                 icon: "error",
-                title: "품목을 선택하세요"
+                title: "Please select an item"
             });
             return;
         }
@@ -41,7 +41,7 @@ window.document.addEventListener("DOMContentLoaded", function() {
 
             Swal.fire({
                 icon: "error",
-                title: "유효한 수량을 입력해 주세요"
+                title: "Please enter a valid quantity"
 
             });
             return;
@@ -90,14 +90,14 @@ window.document.addEventListener("DOMContentLoaded", function() {
     function handleSubmitClick(e) {
         e.preventDefault();
 
-        Swal.fire({title: '입고 등록 확인',
-            text: '입고 등록 하시겠습니까?',
+        Swal.fire({title: 'Inbound Registration Confirmation',
+            text: 'Would you like to confirm the inbound registration?',
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
-            confirmButtonText: '확인',
-            cancelButtonText: '취소'}).then((result) =>{
+            confirmButtonText: 'Confirm',
+            cancelButtonText: 'Cancel'}).then((result) =>{
                 if(result.isConfirmed){
 
                     // list를 숨겨진 입력 필드에 저장

@@ -3,22 +3,29 @@ package org.kosta.starducks.auth.service;
 import org.kosta.starducks.hr.entity.Employee;
 import org.kosta.starducks.hr.repository.EmpRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.security.SecureRandom;
+import java.util.Collections;
 
 /**
  * 이메일로 직원 찾고 임시 비밀번호를 이메일로 보내기 서비스
  */
 @Service
-public class UserService {
+public class UserService{
+
 
   @Autowired
   private EmpRepository empRepository;
 
   @Autowired
   private PasswordEncoder passwordEncoder;
+
 
 //  비밀번호 찾기 페이지에서 사번, 이메일 일치 여부 확인을 위한 메서드
   public boolean validateEmpIdAndEmail(Long empId, String email) {
@@ -44,4 +51,6 @@ public class UserService {
   public void updateEmp(Employee employee) {
     empRepository.save(employee);
   }
+
+
 }

@@ -49,7 +49,16 @@ public class IndexController {
 
     // 6개의 위젯 구현
     @GetMapping("/")
-    public String index(@AuthenticationPrincipal CustomUserDetails userDetails, Model model) {
+    public String index(@AuthenticationPrincipal(errorOnInvalidType=true) CustomUserDetails userDetails, Model model) {
+
+        if (userDetails == null) {
+            System.out.println("userDetails 객체가 null입니다.");
+        } else {
+            System.out.println("userDetails 객체 값: " + userDetails);
+            System.out.println("Username: " + userDetails.getUsername());
+        }
+
+
         Long empId = Long.parseLong(userDetails.getUsername());
 //        Long empId = userDetails != null ? userDetails.getEmployee().getEmpId() : 1L;
         // 1. 근태관리
