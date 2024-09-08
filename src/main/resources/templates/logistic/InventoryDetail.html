@@ -11,7 +11,7 @@
 </th:block>
 
 <main layout:fragment="content">
-    <h1>Warehouse Inventory Details</h1>
+    <h1 class="page-title" style="margin-bottom: 50px;">| Warehouse Inventory Details</h1>
     <div class="content">
         <div class="small-content">
             <table class="vertical-table">
@@ -37,16 +37,16 @@
                     <td th:text="${inventory.productUnit}">p.productCode</td>
                 </tr>
                 <tr>
-                    <th>창고 재고 수량</th>
+                    <th>Warehouse stock</th>
                     <td th:text="${inventory.productCnt}">p.productCode</td>
                 </tr>
 
                 <tr>
-                    <th>최근 입고일</th>
+                    <th>Recent Inbound Date</th>
                     <td th:text="${#temporals.format(inventory.getModifiedAt(),'yyyy.MM.dd a hh:mm')}"></td>
                 </tr>
                 <tr>
-                    <th>판매 여부</th>
+                    <th>Sale Status</th>
                     <td th:text="${inventory.productSelling}">p.productCode</td>
                 </tr>
 
@@ -57,7 +57,7 @@
 
         <div class="bottom-button">
             <a th:href="@{/logistic/stock/warehouse/list}">
-                <button class="commonBtn cancel-button"> To List</button>
+                <button class="commonBtn cancel-button"> List</button>
             </a>
             <a th:href="@{/logistic/stock/warehouse/update/{code}(code=${inventory.getProductCode()})}">
                 <button class="commonBtn edit-button"> Edit</button>
