@@ -3,8 +3,6 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layouts/main}">
 
-<!--title-->
-<th:block layout:fragment="title">품목정보조회</th:block>
 <th:block layout:fragment="addMore">
     <link rel="stylesheet" type="text/css" th:href="@{/css/generalAffairs/style.css}">
 
@@ -21,11 +19,16 @@
         height: 120px;
         border: 1px solid #6B4D27;
         border-radius: 10px;
+    }
 
+    /* 상단의 페이지 제목 */
+    .page-title {
+        text-shadow: 0 1.5px 2px rgba(0, 0, 0, 0.25);
+        color: #6B4D27;
     }
 </style>
 <main layout:fragment="content">
-    <h3>품목 상세 정보</h3>
+    <h1 class="page-title" style="margin-bottom: 50px;">| 품목 정보 조회</h1>
     <br>
     <div id="form">
         <div class="picture" style="display: flex; justify-content: center; align-items: center;">
@@ -59,7 +62,7 @@
                 <dl>
                     <dt>판매 가격 :</dt>
 <!--                    '원' 자를 붙이면 일직선이 안맞게 되서 일단 임시로 원은 지웠습니다. 나중에 수정해주세요.-->
-                    <dd><input style="width: 280px;" type="text" th:value="${p.productPrice}" readonly></dd>
+                    <dd><input style="width: 280px;" type="text" th:value="${#numbers.formatDecimal(p.productPrice, 0, 'COMMA', 0, 'POINT')}" readonly></dd> 원
                 </dl>
                 <br>
             </div>
@@ -67,24 +70,24 @@
             <div style="flex: 1;">
                 <dl>
                     <dt>단위 :</dt>
-                    <dd><input type="text" th:value="${p.productUnit}" readonly></dd>
+                    <dd><input style="width: 280px;" type="text" th:value="${p.productUnit}" readonly></dd>
                 </dl>
                 <br>
 
                 <dl>
                     <dt>공급 업체 :</dt>
-                    <dd><input type="text" th:value="${p.getVendor().getVendorName()}" readonly></dd>
+                    <dd><input style="width: 280px;" type="text" th:value="${p.getVendor().getVendorName()}" readonly></dd>
                 </dl>
                 <br>
 
                 <dl>
                     <dt>전화 번호 :</dt>
-                    <dd><input type="text" th:value="${p.getVendor().getVendorTelephone()}" readonly></dd>
+                    <dd><input style="width: 280px;" type="text" th:value="${p.getVendor().getVendorTelephone()}" readonly></dd>
                 </dl>
                 <br>
                 <dl>
                     <dt>거래 여부 :</dt>
-                    <dd><input type="text" th:value="${p.productSelling}" readonly></dd>
+                    <dd><input style="width: 280px;" type="text" th:value="${p.productSelling}" readonly></dd>
                 </dl>
             </div>
         </div>
