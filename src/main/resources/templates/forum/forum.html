@@ -13,7 +13,7 @@
 </th:block>
 
 <main layout:fragment="content">
-  <h1>Corporate Bulletin Board</h1>
+  <h1 class="page-title" style="margin-bottom: 50px;">| Corporate Bulletin Board</h1>
 
   <!-- 전체 글 보기 링크 -->
   <div class="forum-header">
@@ -45,7 +45,7 @@
       <tr class="notice" th:onclick="'location.href=\'' + @{/forum/post/{id}(id=${notice.postId})} + '\''"
           style="cursor:pointer">
         <td th:text="${notice.postId}">ID</td>
-        <td>공지</td>
+        <td>Notice</td>
         <td th:text="${notice.postTitle}">Title</td>
         <td th:text="${notice.employee?.empName} ?: '로그인 필요'">Author</td>
         <td th:text="${#temporals.format(notice.postDate, 'yyyy.MM.dd')}">Date Created</td>
@@ -57,7 +57,7 @@
       <tr th:onclick="'location.href=\'' + @{/forum/post/{id}(id=${post.postId})} + '\''"
           style="cursor:pointer">
         <td th:text="${post.postId}">ID</td>
-        <td th:text="${post.postNotice} ? '공지' : '일반'">Category</td>
+        <td th:text="${post.postNotice} ? 'Notice' : 'General'">Category</td>
         <td th:text="${post.postTitle}">Title</td>
         <td th:text="${post.employee?.empName} ?: '로그인 필요'">Author</td>
         <td th:text="${#temporals.format(post.postDate, 'yyyy.MM.dd')}">Date Created</td>
