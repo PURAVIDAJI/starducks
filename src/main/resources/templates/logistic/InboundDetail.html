@@ -11,41 +11,41 @@
 </th:block>
 
 <main layout:fragment="content">
-    <h1>Incoming Inventory Details</h1>
+    <h1 class="page-title" style="margin-bottom: 50px;">| Incoming Inventory Details</h1>
     <div class="content">
 
         <div class="ipgodetail">
-            입고 번호<input type="text" th:value="${inbound.warehouseInboundId}" readonly>
+            Inbound Number<input type="text" th:value="${inbound.warehouseInboundId}" readonly>
             <br>
-            입고 등록인<input type="text" th:value="${inbound.getEmployee().getEmpName()}" readonly>
+            Registered By<input type="text" th:value="${inbound.getEmployee().getEmpName()}" readonly>
             <br>
-            입고 일자<input type="text" th:value="${#temporals.format(inbound.getWarehouseInboundDate(), 'yyyy.MM.dd a hh:mm')}" readonly>
+            Inbound Date<input type="text" th:value="${#temporals.format(inbound.getWarehouseInboundDate(), 'yyyy.MM.dd a hh:mm')}" readonly>
             <br>
         </div>
 
         <table class="detail-table">
             <thead>
             <tr>
-                <th>품목Code</th><th>품목 이름</th><th>거래처</th><th>거래단가</th><th>입고수량</th><th>단위</th><th>입고금액</th>
+                <th>Item Code</th><th>Item Name</th><th>Vendor</th><th>Unit Price</th><th>Quantity</th><th>Unit</th><th>Amount</th>
             </tr>
             </thead>
             <tbody>
             <tr th:each="i:${inbound.getInboundProducts()}">
 
-                <td th:text="${i.getProduct().productCode}">품목code</td>
-                <td th:text="${i.getProduct().productName}">품목 이름</td>
-                <td th:text="${i.getProduct().getVendor().getVendorName()}">거래처</td>
-                <td th:text="${i.getProduct().productPrice}">거래단가</td>
+                <td th:text="${i.getProduct().productCode}">Item Code</td>
+                <td th:text="${i.getProduct().productName}">Item Name</td>
+                <td th:text="${i.getProduct().getVendor().getVendorName()}">Vendor</td>
+                <td th:text="${i.getProduct().productPrice}">Unit Price</td>
 
-                <td th:text="${i.getInboundQuantity()}">입고수량</td>
-                <td th:text="${i.getProduct().productUnit}">단위</td>
-                <td th:text="${i.getInboundPrice()}">입고금액</td>
+                <td th:text="${i.getInboundQuantity()}">Quantity</td>
+                <td th:text="${i.getProduct().productUnit}">Unit</td>
+                <td th:text="${i.getInboundPrice()}">Amount</td>
 
             </tr>
             </tbody>
             <tfoot>
             <tr>
-                <td th:text="거래합계"></td>
+                <td th:text="Total"></td>
                 <td colspan="3"></td>
                 <td th:text="${inbound.getTotalQuantity()}">Total Quantity</td>
                 <td></td>

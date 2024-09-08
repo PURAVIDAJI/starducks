@@ -15,7 +15,7 @@
         <div class="topipgo">
         <form id="addForm"  action="/logistic/inbound/warehouse/add" method="post" >
                 <div>
-                    <label for="employee">담당자명 : </label>
+                    <label for="employee">Registered By : </label>
                     <select id="employee" name="empId">
                         <option value="">담당자를 선택하세요</option>
                         <option th:each="e : ${employees}" th:value="${e.getEmpId()}" th:text="${e.getEmpName()}"></option>

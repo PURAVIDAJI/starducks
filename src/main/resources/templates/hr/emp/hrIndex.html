@@ -21,7 +21,7 @@
 <main layout:fragment="content">
     <script th:if="${result}" th:utext="${result}"></script>
 
-    <h1 class="page-title" style="margin-bottom: 50px;">| 사원 목록</h1>
+    <h1 class="page-title" style="margin-bottom: 50px;">| Employee List</h1>
     <form method="get" th:action="@{/hr/emp}" class="search" th:object="${empSearch}">
             <label for="every">All</label> <input type="radio" id="every" name="status" value="all" th:field="*{status}" checked>
             <label for="runopt">재직</label> <input type="radio" id="runopt" name="status" value="running" th:field="*{status}">
@@ -40,12 +40,12 @@
     <table>
         <thead>
             <tr>
-                <th>사번</th>
-                <th>이름</th>
-                <th>부서</th>
-                <th>직급</th>
-                <th>연락처</th>
-                <th>이메일</th>
+                <th>Employee ID</th>
+                <th>Name</th>
+                <th>Dept</th>
+                <th>Position</th>
+                <th>Phone</th>
+                <th>Email</th>
             </tr>
         </thead>
         <tbody th:each="emp : ${employees}" th:object="${emp}">
