@@ -56,7 +56,7 @@ $(document).ready(function () {
             resources: resources,
             selectable: true,
             events: events,
-            locale: "ko",
+            locale: "en",
             eventRender: function (info) {
                 // console.log(info.el.style.color);
                 // 각 이벤트에 대한 스타일 지정
@@ -95,7 +95,7 @@ $(document).ready(function () {
                 let today = new Date()
                 let selected = new Date(info.start)
                 if(today > selected) {
-                    errorAlert("현재 시간 이후로 예약이 가능합니다.")
+                    errorAlert("Reservations are available only after the current time.")
                     .then(() => {
                         location.reload();
                     })
@@ -109,7 +109,7 @@ $(document).ready(function () {
                         showBookingPopup(data);
                     } else {
                         // 중복이라면 경고창 표시
-                        errorAlert("중복예약은 불가합니다.").then(() => {
+                        errorAlert("Duplicate reservations are not allowed").then(() => {
                             location.reload();
                         })
                     }
@@ -185,7 +185,7 @@ $(document).ready(function () {
 
                 } else {
                     // 중복이라면 경고창 표시
-                    errorAlert("중복예약은 불가합니다.")
+                    errorAlert("Duplicate reservations are not allowed")
                     .then(() => {
                         location.reload();
                     })
@@ -200,8 +200,8 @@ $(document).ready(function () {
             let modal = $('#bookingModal')
             console.log("data22" + JSON.stringify(data));
 
-            let startTime = data.start.toLocaleTimeString('ko-KR', { hour12: false, hour: '2-digit', minute: '2-digit', second: '2-digit', timeZone: 'Asia/Seoul' })
-            let endTime = data.end.toLocaleTimeString('ko-KR', { hour12: false, hour: '2-digit', minute: '2-digit', second: '2-digit', timeZone: 'Asia/Seoul' })
+            let startTime = data.start.toLocaleTimeString('en-US', { hour12: false, hour: '2-digit', minute: '2-digit', second: '2-digit', timeZone: 'America/New_York' })
+            let endTime = data.end.toLocaleTimeString('en-US', { hour12: false, hour: '2-digit', minute: '2-digit', second: '2-digit', timeZone: 'America/New_York' })
 
             $('#room').val(data.resourceId);
             $('#runningDay').val(dateFormat(data.start.toISOString()));
@@ -241,7 +241,7 @@ $(document).ready(function () {
                     // 시작 시간이 현재보다 이전이면 예약 불가
                     if(today > start) {
                         dupl = true;
-                        message = errorAlert("현재 시간 이후로 예약이 가능합니다.")
+                        message = errorAlert("Reservations are available only after the current time")
                     } else {
                         dupl = false;
 
@@ -249,7 +249,7 @@ $(document).ready(function () {
                             // 시간도 중복되고 회의실도 중복되면 예약 불가
                             if ($('#room').val() == event.room) {
                                 dupl = true;
-                                message = errorAlert("중복예약은 불가합니다.")
+                                message = errorAlert("Duplicate reservations are not allowed")
                             } else {
                                 dupl = false;
                             }
@@ -285,8 +285,8 @@ $(document).ready(function () {
             $('#dept').text(data.dept);
             $('#empName').text(data.bookerNm);
             $('#sRunningDay').text(dateFormat(data.start.toISOString()));
-            $('#sStartT').text(data.start.toLocaleTimeString('ko-KR', { hour12: false, hour: '2-digit', minute: '2-digit', second: '2-digit', timeZone: 'Asia/Seoul' }))
-            $('#sEndT').text(data.end.toLocaleTimeString('ko-KR', { hour12: false, hour: '2-digit', minute: '2-digit', second: '2-digit', timeZone: 'Asia/Seoul' }));
+            $('#sStartT').text(data.start.toLocaleTimeString('en-US', { hour12: false, hour: '2-digit', minute: '2-digit', second: '2-digit', timeZone: 'America/New_York' }))
+            $('#sEndT').text(data.end.toLocaleTimeString('en-US', { hour12: false, hour: '2-digit', minute: '2-digit', second: '2-digit', timeZone: 'America/New_York' }));
             $('#sConfName').text(data.title);
             $('#sMemo').text(data.memo);
 
@@ -312,7 +312,7 @@ $(document).ready(function () {
                 // 새로운 <p> 요소를 생성
                 let newParagraph = $('<p>');
 
-                newParagraph.text("완료된 회의입니다.");
+                newParagraph.text("The meeting has been completed");
 
                 newParagraph.css({
                     'padding': '10px',

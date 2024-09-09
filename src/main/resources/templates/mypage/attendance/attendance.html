@@ -14,14 +14,14 @@
         function confirmStart() {
             console.log('confirmStart called')
             Swal.fire({
-                title: '출근 확인',
-                text: '출근 하시겠습니까?',
+                title: 'Clock In Confirmation',
+                text: 'Do you want to clock in?',
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
-                confirmButtonText: '확인',
-                cancelButtonText: '취소'
+                confirmButtonText: 'Confirm',
+                cancelButtonText: 'Cancel'
             }).then((result) => {
                 if(result.isConfirmed) {
                     document.getElementById('confirmStart').submit();
@@ -32,14 +32,14 @@
         function confirmEnd() {
             console.log('confirmEnd called')
             Swal.fire({
-                title: '퇴근 확인',
-                text: '퇴근 하시겠습니까?',
+                title: 'Clock Out Confirmation',
+                text: 'Do you want to clock out?',
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
-                confirmButtonText: '확인',
-                cancelButtonText: '취소'
+                confirmButtonText: 'Confirm',
+                cancelButtonText: 'Cancel'
             }).then((result) => {
                 if(result.isConfirmed) {
                     document.getElementById('confirmEnd').submit();
@@ -51,47 +51,47 @@
 </th:block>
 
 <main layout:fragment="content">
-    <h1 class="page-title" style="margin-bottom: 50px;">| 근태 관리</h1>
+    <h1 class="page-title" style="margin-bottom: 50px;">| Attendence</h1>
     <p th:text="${empId}" id="empId" class="d-none"></p>     <!-- 해당 계정의 근태 정보를 ajax로 가져오기 위함-->
     <div class="calendar-side">
         <div class="attd-check-box page-shadow">
             <div>
                 <form th:action="@{/mypage/attendance/startSubmit}" method="post" id="confirmStart" th:if="${attendance?.startTime == null}" onsubmit="return confirmStart()">
-                    <button class="attd-btn" type="submit"><i class="fa-solid fa-circle-check"></i>&nbsp;출근</button>
+                    <button class="attd-btn" type="submit"><i class="fa-solid fa-circle-check"></i>&nbsp;Clock In</button>
                 </form>
                 <form th:action="@{/mypage/attendance/endSubmit}" id="confirmEnd" method="post" onsubmit="return confirmEnd()" th:if="${attendance?.startTime != null && attendance?.endTime == null}">
-                    <button class="attd-btn" type="submit"><i class="fa-solid fa-circle-check"></i>&nbsp;퇴근</button>
-                </form>
+                    <button class="attd-btn" type="submit"><i class="fa-solid fa-circle-check"></i>&nbsp;Clock Out</button>
+                </form>s
             </div>
-            <p class="complete-attd" th:if="${attendance?.endTime != null}"><i class="fa-solid fa-circle-check"></i>&nbsp;근태 기록 완료</p>
+            <p class="complete-attd" th:if="${attendance?.endTime != null}"><i class="fa-solid fa-circle-check"></i>&nbsp;Time Logged</p>
 
             <div class="attd-time-box">
                 <div class="start-time-box">
-                    출근&ensp;|&ensp;<span type="text" th:if="${attendance != null}" th:text="${#temporals.format(attendance?.startTime, 'HH:mm')}"></span>
+                    Clock In&ensp;|&ensp;<span type="text" th:if="${attendance != null}" th:text="${#temporals.format(attendance?.startTime, 'HH:mm')}"></span>
                 </div>
                 <div class="start-time-box">
-                    퇴근&ensp;|&ensp;<span type="text" th:if="${attendance != null}" th:text="${#temporals.format(attendance?.endTime, 'HH:mm')}"></span>
+                    Clock Out&ensp;|&ensp;<span type="text" th:if="${attendance != null}" th:text="${#temporals.format(attendance?.endTime, 'HH:mm')}"></span>
                 </div>
             </div>
         </div>
 
         <div class="attd-sum-box page-shadow">
-            <h3 class="sum-month"><span th:text="${#dates.format(#dates.createToday(), 'yyyy년 MM월')}"></span></h3>
+            <h3 class="sum-month"><span th:text="${#dates.format(#dates.createToday(), 'yyyy.MM')}"></span></h3>
 
             <div class="attd-sum-wrap">
-                <div>근무</div>
+                <div>Work</div>
                 <div class="attd-sum-num-box" th:text="${workDays}">18</div>
             </div>
             <div class="attd-sum-wrap">
-                <div>지각</div>
+                <div>Late</div>
                 <div class="attd-sum-num-box" th:text="${lateDays}">0</div>
             </div>
             <div class="attd-sum-wrap">
-                <div>결근</div>
+                <div>Absence</div>
                 <div class="attd-sum-num-box" th:text="${absentDays}">0</div>
             </div>
             <div class="attd-sum-wrap">
-                <div>연차</div>
+                <div>Leave</div>
                 <div class="attd-sum-num-box">12/15</div>
             </div>
         </div>

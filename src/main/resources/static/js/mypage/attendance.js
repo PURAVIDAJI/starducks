@@ -10,8 +10,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 let workDate = $("<td>").text(data.workDate)
                 let startTime = $("<td>").text(timeFormat(data.startTime))
                 let endTime = $("<td>").text(timeFormat(data.endTime))
-                let vac = $("<td>").text('휴가')
-                let absence = $("<td>").text('결근')
+                let vac = $("<td>").text('Leave')
+                let absence = $("<td>").text('Absence')
 
                 let tr = $("<tr>").append(workDate).append(startTime).append(endTime);
                 if (data.isVacation) {
@@ -38,18 +38,18 @@ document.addEventListener('DOMContentLoaded', function() {
             center: 'prev title next',
             left: ''
         },
-        locale: "ko",
+        locale: "en",
         // eventContent: 'some text',
 
         eventContent: function (arg) {
             var contentText;
             if (arg.event.extendedProps.isVacation) {
-                contentText = '휴가';
+                contentText = 'Leave';
             } else if(arg.event.extendedProps.startTime === null && arg.event.extendedProps.endTime === null ) {
-                contentText = '결근'
+                contentText = 'Absence'
             } else {
-                contentText = '&ensp;출근 | ' + timeFormat(arg.event.extendedProps.startTime) +
-                    '<br>&ensp;퇴근 | ' + timeFormat(arg.event.extendedProps.endTime);
+                contentText = '&ensp;Clock-in | ' + timeFormat(arg.event.extendedProps.startTime) +
+                    '<br>&ensp;Clock-out | ' + timeFormat(arg.event.extendedProps.endTime);
             }
 
             return {
@@ -64,7 +64,7 @@ document.addEventListener('DOMContentLoaded', function() {
             fetchDailyAttendance(empId).then(function (data) {
                 var events = data.map(function (attendance) {
                     return {
-                        title: attendance.isVacation ? '휴가' : '',
+                        title: attendance.isVacation ? 'Leave' : '',
                         color: 'rgba(1,1,1,0)',
                         textColor: 'black',
                         start: attendance.workDate,

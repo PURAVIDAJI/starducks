@@ -67,7 +67,7 @@ public class initData implements ApplicationListener<ApplicationReadyEvent> {
     @Override
     public void onApplicationEvent(ApplicationReadyEvent event) {
         //배포 서버 JVM 시간 설정
-        TimeZone.setDefault(TimeZone.getTimeZone("Asia/Seoul"));
+        TimeZone.setDefault(TimeZone.getTimeZone("America/New_York"));
 
         // 초기 부서 데이터
         List<Department> depts = new ArrayList<>();

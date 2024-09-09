@@ -18,26 +18,26 @@
 </style>
 
 <main layout:fragment="content">
-    <h1 class="page-title" style="margin-bottom: 50px;">| 출고 내역 상세 조회</h1>
+    <h1 class="page-title" style="margin-bottom: 50px;">| Outgoing Inventory Details</h1>
     <div class="content">
         <div class="ipgodetail">
-            출고 번호<input type="text" th:value="${outbound.warehouseoutboundId}" readonly>
+            Outbound Number<input type="text" th:value="${outbound.warehouseoutboundId}" readonly>
             <br>
-            출고 등록인<input type="text" th:value="${outbound.getEmployee().getEmpName()}" readonly>
+            Registered By<input type="text" th:value="${outbound.getEmployee().getEmpName()}" readonly>
             <br>
-            출고 일자<input type="text" th:value="${#temporals.format(outbound.getWarehouseOutboundDate(), 'yyyy.MM.dd a hh:mm')}" readonly>
+            Outbound Date<input type="text" th:value="${#temporals.format(outbound.getWarehouseOutboundDate(), 'yyyy.MM.dd a hh:mm')}" readonly>
             <br>
         </div>
         <table class="detail-table">
             <thead>
             <tr>
-                <th>품목 Code</th>
-                <th>품목 이름</th>
-                <th>거래처</th>
-                <th>거래단가</th>
-                <th>출고수량</th>
-                <th>단위</th>
-                <th>출고금액</th>
+                <th>Item Code</th>
+                <th>Item Name</th>
+                <th>Vendor</th>
+                <th>Unit Price</th>
+                <th>Quantity</th>
+                <th>Unit</th>
+                <th>Amount</th>
             </tr>
             </thead>
             <tbody>
@@ -53,7 +53,7 @@
             </tbody>
             <tfoot>
             <tr>
-                <td th:text="거래합계"></td>
+                <td th:text="Total"></td>
                 <td colspan="3"></td>
                 <td th:text="${#numbers.formatDecimal(outbound.getTotalQuantity(), 0, 'COMMA', 0, 'POINT')}">Total Quantity</td>
                 <td></td>

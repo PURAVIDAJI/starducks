@@ -77,11 +77,11 @@
                  th:if="${comment.employee.empId.toString() == #authentication.principal.username}">
               <button class="fcommonBtn fedit-button"
                       th:onclick="'showEditForm(' + ${comment.commentId} + ');'">
-                수정
+                Edit
               </button>
               <button class="fcommonBtn fdelete-button"
                       th:onclick="'deletePostComment(' + ${comment.commentId} + ');'">
-                삭제
+                Delete
               </button>
             </div>
           </div>

@@ -11,15 +11,15 @@
 </th:block>
 
 <main layout:fragment="content">
-  <h1>게시글 수정</h1>
+  <h1 class="page-title" style="margin-bottom: 50px;">| Edit Post</h1>
   <form method="post" th:action="@{/forum/edit/{id}(id=${post.postId})}" onsubmit="saveEditorContent()">
     <!-- 제목 입력란 -->
-    <input placeholder="제목" required th:field="*{post.postTitle}" type="text">
+    <input placeholder="title" required th:field="*{post.postTitle}" type="text">
 
     <!-- 공지사항 체크박스: 총무부 직원일 경우에만 표시 -->
     <div class="checkbox-container" th:if="${isGADepartment || isBoss}">
       <input id="postNotice" name="postNotice" th:checked="${post.postNotice}" type="checkbox">
-      <label for="postNotice">공지로 등록</label>
+      <label for="postNotice">Register as Notice</label>
     </div>
 
     <!-- 에디터의 메인 컨테이너 -->
@@ -29,9 +29,9 @@
     <input id="editor_content" name="postContent" type="hidden">
 
     <!-- 수정, 취소 버튼 -->
-    <button class="commonBtn register-button" type="submit">수정 완료</button>
+    <button class="commonBtn register-button" type="submit">Update</button>
     <a th:href="@{/forum/post/{id}(id=${post.postId})}">
-      <p class="commonBtn cancel-button">취소</p>
+      <p class="commonBtn cancel-button">Cancel</p>
     </a>
   </form>
   <!--토스트 글쓰기 에디터 -->

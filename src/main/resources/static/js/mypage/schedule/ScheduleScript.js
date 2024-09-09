@@ -167,7 +167,7 @@ document.addEventListener('DOMContentLoaded', function () {
             center: 'prev title next',
             end: 'today'
         },
-        locale: "ko",
+        locale: "en",
         navLinks: true,
         selectable: true,
         selectMirror: true,

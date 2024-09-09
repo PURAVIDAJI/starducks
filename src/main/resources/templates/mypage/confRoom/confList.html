@@ -20,7 +20,7 @@
 </style>
 
 <main layout:fragment="content">
-    <h1 class="page-title" style="margin-bottom: 50px;">| 회의실 예약</h1>
+    <h1 class="page-title" style="margin-bottom: 50px;">| Room Booking</h1>
     <div id="roomList">
         <ul>
             <li class="rooms selected" id="ROOM1">ROOM1</li>
@@ -35,28 +35,28 @@
         <form class="modal-content" id="bookingForm">
             <span class="close" id="closeModalBtn">&times;</span>
             <div>
-                <span>회의실 선택</span>
+                <span>Select Room</span>
                 <select id="room" name="room">
                     <option th:each="room : ${rooms}" th:value="${room}" th:text="${room}"></option>
                 </select>
                 <br>
-                <span>예약자</span>
+                <span>Booked By</span>
                 <input th:if="${emp != null}" type="text" th:value="${emp.empName}" disabled>
                 <input th:if="${emp != null}" type="hidden" th:value="${emp.empId}" id="empId" disabled>
                 <br>
-                <span>회의 제목</span>
+                <span>Meeting Title</span>
                 <input type="text" id="confName">
                 <br>
-                <span>진행일자</span>
+                <span>Meeting Date</span>
                 <input type="date" id="runningDay">
                 <br>
-                <span>시작시간</span>
+                <span>Start Time</span>
                 <input type="time" id="startTime" min="08:00" max="18:00" step="1800000">
 
-                <span>종료시간</span>
+                <span>End Time</span>
                 <input type="time" id="endTime" min="09:00" max="19:00" step="1800000">
 
-                <span>블록 색상</span>
+                <span>Block Color</span>
                 <select id="color" name="color">
                     <option onclick="" value="#FFE4E6">red</option>
                     <option value="#E6E7FF">blue</option>
@@ -64,9 +64,9 @@
                     <option value="#E6E7FF">purple</option>
                 </select>
                 <br>
-                <p>메모</p>
+                <p>Notes</p>
                 <textarea id="text" rows="5" cols="62"></textarea>
-                <button class="commonBtn register-button" id="submitBtn">등록</button>
+                <button class="commonBtn register-button" id="submitBtn">Register</button>
             </div>
         </form>
     </div>
@@ -77,7 +77,7 @@
             <h3>회의실 예약 관리</h3>
             <div id="content">
                 <dl>
-                    <dt>회의실</dt>
+                    <dt>Meeting Room</dt>
                     <dd><p id="sRoom"></p></dd>
                 </dl>
                 <dl>
@@ -110,8 +110,8 @@
                 </dl>
             </div>
             <div class="btns" id="btns">
-                <button class="commonBtn edit-button" id="edit-book">수정</button>
-                <button class="commonBtn delete-button" id="delete-book">삭제</button>
+                <button class="commonBtn edit-button" id="edit-book">Edit</button>
+                <button class="commonBtn delete-button" id="delete-book">Delete</button>
             </div>
         </div>
     </div>

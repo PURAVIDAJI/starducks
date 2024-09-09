@@ -11,7 +11,7 @@ import java.util.TimeZone;
 public class StarducksApplication {
 
 	public static void main(String[] args) {
-		TimeZone.setDefault(TimeZone.getTimeZone("Asia/Seoul"));
+		TimeZone.setDefault(TimeZone.getTimeZone("America/New_York"));
 		SpringApplication.run(StarducksApplication.class, args);
 	}
 }

@@ -21,45 +21,45 @@
                 <div style="flex: 1;">
                     <form class="modal-content" th:action="@{/mypage/schedule/add}" method="post" th:id="addForm">
                         <span class="close" id="closeModalBtn" style="color: #6c757d">X</span>
-                        <h3>일정 등록</h3>
+                        <h3>Add Schedule</h3>
                         <div style="padding: 40px">
                             <input type="hidden" id="scheNo" name="scheNo" disabled>
 
                             <dl style="display: flex;">
-                                <dt style="margin-right: 38px;">일정명</dt>
+                                <dt style="margin-right: 38px;">Title</dt>
                                 <dd>
                                     <input type="text" id="scheTitle" name="scheTitle" style="width: 280px;">
                                 </dd>
                             </dl>
 
                             <dl style="display: flex;">
-                                <dt style="margin-right: 20px;">시작 일시</dt>
+                                <dt style="margin-right: 20px;">Start Date</dt>
                                 <dd>
                                     <input style="width: 280px;" type="datetime-local" name="scheStartDate">
                                 </dd>
                             </dl>
 
                             <dl style="display: flex;">
-                                <dt style="margin-right: 20px;">종료 일시</dt>
+                                <dt style="margin-right: 20px;">End Date</dt>
                                 <dd><input style="width: 280px;" type="datetime-local" name="scheEndDate"></dd>
                             </dl>
 
                             <dl style="display: flex;">
-                                <dt style="margin-right: 20px;">일정 종류</dt>
+                                <dt style="margin-right: 20px;">Type</dt>
                                 <dd>
                                     <select style="width: 280px;" id="scheType" name="scheduleType">
-                                        <option th:value="PERSONAL_SCHEDULE" name="PERSONAL_SCHEDULE">개인일정</option>
-                                        <option th:value="OFFICIAL_SCHEDULE" name="OFFICIAL_SCHEDULE">공식일정</option>
+                                        <option th:value="PERSONAL_SCHEDULE" name="PERSONAL_SCHEDULE">Personal Schedule</option>
+                                        <option th:value="OFFICIAL_SCHEDULE" name="OFFICIAL_SCHEDULE">Official Schedule</option>
                                     </select></dd>
                             </dl>
 
                             <dl style="display: flex;">
-                                <dt style="margin-right: 20px;">참고사항</dt>
+                                <dt style="margin-right: 20px;">Notes</dt>
                                 <dd><textarea id="text" name="notes"></textarea></dd>
                             </dl>
 
                             <div class="btns" id="btns">
-                                <button class="commonBtn register-button" id="registBtn">등록</button>
+                                <button class="commonBtn register-button" id="registBtn">Register</button>
                             </div>
                         </div>
                     </form>

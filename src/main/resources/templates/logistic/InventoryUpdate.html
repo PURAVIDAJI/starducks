@@ -18,7 +18,7 @@
 </style>
 
 <main layout:fragment="content">
-    <h1 class="page-title" style="margin-bottom: 50px;">| 창고 재고 수정</h1>
+    <h1 class="page-title" style="margin-bottom: 50px;">| Warehouse Inventory Update</h1>
     <div class="content">
         <form th:action="@{/logistic/stock/warehouse/update/{productCode}(productCode=${inventory.getProductCode()})}"
               th:method="post" class="inventoryUpdate-form">
@@ -57,11 +57,11 @@
                     </tr>
 
                     <tr>
-                        <th>최근 입고일</th>
+                        <th>Recent Inbound Date</th>
                         <td th:text="${#temporals.format(inventory.getModifiedAt(),'yyyy.MM.dd a hh:mm')}"></td>
                     </tr>
                     <tr>
-                        <th>판매 여부</th>
+                        <th>Sale Status</th>
                         <td th:text="${inventory.productSelling}">p.productCode</td>
                     </tr>
                     </tbody>
