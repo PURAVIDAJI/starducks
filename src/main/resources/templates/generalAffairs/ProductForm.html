@@ -3,7 +3,7 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layouts/main}">
 
-<th:block layout:fragment="title">품목등록</th:block>
+<th:block layout:fragment="title">Product Registration</th:block>
 
 <th:block layout:fragment="addMore">
     <link rel="stylesheet" type="text/css" th:href="@{/css/generalAffairs/style.css}">
@@ -22,7 +22,7 @@
 </style>
 
 <main layout:fragment="content">
-    <h1 class="page-title" style="margin-bottom: 50px;">| 품목 정보 등록</h1>
+    <h1 class="page-title" style="margin-bottom: 50px;">| Product Registration</h1>
     <br>
     <div class="content">
         <div style="display: flex; justify-content: center; align-items: center;">
@@ -31,7 +31,7 @@
                       enctype="multipart/form-data">
                     <!-- 물품 카테고리 드롭다운 -->
                     <dl>
-                        <dt><label for="productCategory">카테고리:</label></dt>
+                        <dt><label for="productCategory">Category:</label></dt>
                         <dd>
                             <select style="width: 280px;" id="productCategory" name="productCategory">
                                 <option th:each="category : ${productCategories}"
@@ -42,15 +42,15 @@
                     <br>
 
                     <dl>
-                        <dt>물품 이름 :</dt>
+                        <dt>Item Name: </dt>
                         <dd>
-                            <input style="width: 280px;" type="text" name="productName" placeholder="물품이름을 입력하세요">
+                            <input style="width: 280px;" type="text" name="productName" placeholder="Please enter the item name">
                         </dd>
                     </dl>
                     <br>
 
                     <dl>
-                        <dt>파일 선택 :</dt>
+                        <dt>Image: </dt>
                         <dd>
                             <!-- 물품 이미지 첨부 -->
                             <input type="file" name="file">
@@ -59,7 +59,7 @@
 
                     <dl>
                         <!-- 물품 단위 드롭다운 -->
-                        <dt><label for="productUnit">단위:</label></dt>
+                        <dt><label for="productUnit">Unit: </label></dt>
                         <dd>
                             <select style="width: 280px;" id="productUnit" name="productUnit">
                                 <option th:each="unit : ${productUnit}"
@@ -72,14 +72,14 @@
 
             <div style="flex: 1;">
                 <dl>
-                    <dt>물품 가격 :</dt>
-                    <dd><input style="width: 280px;" type="number" name="productPrice" placeholder="물품가격을 입력하세요"></dd> 원
+                    <dt>Price: </dt>
+                    <dd><input style="width: 280px;" type="number" name="productPrice" placeholder="Please enter the item price"></dd> 원
                 </dl>
                 <br>
 
                 <dl>
                     <!-- 공급 업체 드롭다운 -->
-                    <dt><label for="vendor">공급 업체:</label></dt>
+                    <dt><label for="vendor">Vendor: </label></dt>
                     <dd>
                         <select style="width: 280px;" id="vendor" name="vendorName">
                             <option th:each="vendorName : ${vendorNames}"
@@ -90,11 +90,11 @@
                 <br>
 
                 <dl>
-                    <dt>거래 여부:</dt>
+                    <dt>Trading Status:</dt>
                     <dd>
                         <input type="checkbox" id="productSelling" name="productSelling">
                     </dd>
-                    <dd><label for="productSelling">거래 중</label></dd>
+                    <dd><label for="productSelling">Active</label></dd>
                 </dl>
                 <br>
                 </form>
@@ -103,10 +103,10 @@
         <div style="display: flex; justify-content: center; align-items: center;">
 <!--            <input type="submit" value="물품 등록">-->
             <button class="commonBtn register-button" id="submitBtn" type="button"
-                    th:onclick="'confirmAdd()'" onsubmit="return confirmAdd()" style="margin-right: 10px;">저장
+                    th:onclick="'confirmAdd()'" onsubmit="return confirmAdd()" style="margin-right: 10px;">Save
             </button>
             <button class="commonBtn cancel-button" type="button" onclick="location.href='/general/products/list'">
-                목록
+                List
             </button>
         </div>
         <br>
@@ -115,14 +115,14 @@
     <script>
         function confirmAdd() {
             Swal.fire({
-                title: '저장 확인',
-                text: '해당 정보를 수정 하시겠습니까?',
+                title: 'Save Confirmation',
+                text: 'Do you want to modify this information?',
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
-                confirmButtonText: '확인',
-                cancelButtonText: '취소'
+                confirmButtonText: 'Confirm',
+                cancelButtonText: 'Cancel'
             }).then((result) => {
                 if (result.isConfirmed) {
                     document.getElementById('addAlert').submit();

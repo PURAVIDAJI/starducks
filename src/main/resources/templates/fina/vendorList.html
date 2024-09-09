@@ -27,13 +27,13 @@
     <!-- 검색창. 제목 + 내용 검색 가능 -->
     <form class="search-form" method="get" th:action="@{/fina/vendor/list}"
           style="display: flex; justify-content: center; align-items: center;">
-        <input style="text-align: center" name="searchKeyword" placeholder="검색어 입력해주세요." type="text">
-        <button type="submit">검색</button>
+        <input style="text-align: center" name="searchKeyword" placeholder="Please enter a search term" type="text">
+        <button type="submit">Search</button>
     </form>
 
     <button class="commonBtn register-button" type="button" onclick="location.href='/fina/vendor/new'"
             style="float: right">
-        추가하기
+        Add
     </button>
     <br><br><br>
 
@@ -43,11 +43,11 @@
         <tr>
             <th scope="col">No.</th>
             <th scope="col">Vendor Name</th>
-            <th scope="col">업종</th>
-            <th scope="col">대표자</th>
-            <th scope="col">연락처</th>
-            <th scope="col">사업자번호</th>
-            <th scope="col">거래여부</th>
+            <th scope="col">Type</th>
+            <th scope="col">Rep. Name</th>
+            <th scope="col">Contact</th>
+            <th scope="col">Business ID</th>
+            <th scope="col">Trading Status</th>
         </tr>
         </thead>
 
@@ -61,7 +61,7 @@
             <td th:text="${vendor.vendorRepreName}">대표자</td>
             <td th:text="${vendor.vendorTelephone}">연락처</td>
             <td th:text="${vendor.vendorRegistNum}">사업자번호</td>
-            <td th:text="${vendor.contractStatus.equals(T(org.kosta.starducks.fina.entity.ContractStatus).CONTRACT_ACTIVE) ? '계약 중' : '계약 중지'}">
+            <td th:text="${vendor.contractStatus.equals(T(org.kosta.starducks.fina.entity.ContractStatus).CONTRACT_ACTIVE) ? 'Y' : 'N'}">
                 계약여부
             </td>
         </tr>

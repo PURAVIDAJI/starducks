@@ -13,16 +13,16 @@
             <p>Empolyee ID</p>
         </div>
         <div>
-            <p th:text="${employee.empName}">이름</p>
+            <p th:text="${employee.empName}">Employee Name</p>
 
-            <p th:if="${employee.position.toString() == 'ROLE_EMPLOYEE'}">사원</p>
-            <p th:if="${employee.position.toString() == 'ROLE_TEAMLEADER'}">팀장</p>
-            <p th:if="${employee.position.toString() == 'ROLE_DEPTLEADER'}">부장</p>
-            <p th:if="${employee.position.toString() == 'ROLE_BOSS'}">사장</p>
-            <p th:if="${employee.position.toString() == 'ROLE_STOREMANAGER'}">점장</p>
+            <p th:if="${employee.position.toString() == 'ROLE_EMPLOYEE'}">Associate</p>
+            <p th:if="${employee.position.toString() == 'ROLE_TEAMLEADER'}">Team Leader</p>
+            <p th:if="${employee.position.toString() == 'ROLE_DEPTLEADER'}">Department Head</p>
+            <p th:if="${employee.position.toString() == 'ROLE_BOSS'}">CEO</p>
+            <p th:if="${employee.position.toString() == 'ROLE_STOREMANAGER'}">Store Manager</p>
 
-            <p th:text="${employee.dept.deptName}">부서</p>
-            <p th:text="${employee.empId}">사번</p>
+            <p th:text="${employee.dept.deptName}">Department</p>
+            <p th:text="${employee.empId}">Employee ID</p>
         </div>
     </div>
 </div>

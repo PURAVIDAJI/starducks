@@ -18,14 +18,14 @@
 </style>
 
     <main layout:fragment="content">
-        <h1 class="page-title" style="margin-bottom: 50px;">| 부서 목록</h1>
+        <h1 class="page-title" style="margin-bottom: 50px;">| Department List</h1>
         <table>
             <thead>
                 <tr>
-                    <th>부서 번호</th>
-                    <th>부서명</th>
-                    <th>대표 연락처</th>
-                    <th>인원</th>
+                    <th>Dept No.</th>
+                    <th>Dept Name</th>
+                    <th>Contact</th>
+                    <th>Employee count</th>
                 </tr>
             </thead>
             <tbody th:each="dept : ${depts}" th:object="${dept}">
@@ -63,27 +63,27 @@
             <a th:href="@{/hr/dept(page=${totalPages - 1})}"> >> </a>
         </div>
 
-        <button id="addBtn" class="commonBtn register-button">부서 등록</button>
+        <button id="addBtn" class="commonBtn register-button">Dept-Register</button>
         <div id="add" class="w-50 dept-table d-none">
             <form th:action="@{/hr/dept/add}" method="post" th:object="${newDept}">
                 <table>
                     <tr>
-                        <th>부서번호</th>
+                        <th>Dept No.</th>
                         <td>
                             <input type="text" name="deptId" id="deptId" th:field="*{deptId}">
                         </td>
                     </tr>
                     <tr>
-                        <th>부서명</th>
+                        <th>Dept Name</th>
                         <td><input type="text" name="deptName" id="deptName" th:field="*{deptName}"></td>
                     </tr>
                     <tr>
-                        <th>대표연락처</th>
+                        <th>Contact</th>
                         <td><input type="text" name="deptRepTel" id="deptRepTel" th:field="*{deptRepTel}"></td>
                     </tr>
                 </table>
-                <button id="hideBtn" class="commonBtn cancel-button">취소</button>
-                <button type="submit" id="saveBtn" class="commonBtn register-button">저장</button>
+                <button id="hideBtn" class="commonBtn cancel-button">Cancel</button>
+                <button type="submit" id="saveBtn" class="commonBtn register-button">Register</button>
             </form>
         </div>
     </main>

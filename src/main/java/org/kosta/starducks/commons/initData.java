@@ -71,12 +71,12 @@ public class initData implements ApplicationListener<ApplicationReadyEvent> {
 
         // 초기 부서 데이터
         List<Department> depts = new ArrayList<>();
-        depts.add(new Department(0, "해당없음","", ""));
-        depts.add(new Department(1, "사장실","boss", "010-1111-1111"));
-        depts.add(new Department(2, "재무부","fina", "010-2222-2222"));
-        depts.add(new Department(3, "총무부","general", "010-3333-3333"));
-        depts.add(new Department(4, "물류유통부","logistic", "010-4444-4444"));
-        depts.add(new Department(5, "인사부","hr", "010-5555-5555"));
+        depts.add(new Department(0, "none","", ""));
+        depts.add(new Department(1, "CEO Office","boss", "434-111-1111"));
+        depts.add(new Department(2, "Finance","fina", "434-222-2222"));
+        depts.add(new Department(3, "General Affairs","general", "434-333-3333"));
+        depts.add(new Department(4, "Logistics","logistic", "434-444-4444"));
+        depts.add(new Department(5, "HR","hr", "434-555-5555"));
 
         deptRepository.saveAllAndFlush(depts);
 
@@ -260,7 +260,7 @@ public class initData implements ApplicationListener<ApplicationReadyEvent> {
                     .postContent("Please contact your department team leader for the application form.").employee(emps.get(4)).postNotice(false).build());
             posts.add(ForumPost.builder().postDate(LocalDateTime.parse("2022-11-30 00:00:00", dtf)).postTitle("Recent Technical Solutions")
                     .postContent("Please contact your department team leader for the application form.").employee(emps.get(0)).postNotice(false).build());
-            posts.add(ForumPost.builder().postDate(LocalDateTime.parse("2021-10-02 00:00:00", dtf)).postTitle("Ideas for Improving Company Culture")
+            posts.add(ForumPost.builder().postDate(LocalDateTime.parse("2021-10-02 00:00:00", dtf)).postTitle("Ideas for Improving Company")
                     .postContent("Please contact your department team leader for the application form.").employee(emps.get(1)).postNotice(false).build());
             posts.add(ForumPost.builder().postDate(LocalDateTime.parse("2022-08-17 00:00:00", dtf)).postTitle("2024 Company Dorm Resident")
                     .postContent("Please contact your department team leader for the application form.").employee(emps.get(3)).postNotice(false).build());
@@ -269,7 +269,7 @@ public class initData implements ApplicationListener<ApplicationReadyEvent> {
         }
 
         //문서 양식 데이터
-        String[] formNames = {"기안서", "지출결의서", "발주서", "휴가신청서", "휴가취소사유서", "매출보고서", "재직증명서"};
+        String[] formNames = {"Draft", "Expense Report", "Purchase Order", "Leave Request", "Leave Cancellation", "Sales Report", "Certificate of Employmen"};
         String[] formNamesEn = {"draft", "b", "orderForm", "d", "e", "f", "empVerification"};
         for (int i = 1; i < 8; i++) {
             DocForm docForm = new DocForm();
@@ -302,8 +302,8 @@ public class initData implements ApplicationListener<ApplicationReadyEvent> {
 
             ScheduleType[] scheduleTypes = {ScheduleType.PERSONAL_SCHEDULE, ScheduleType.OFFICIAL_SCHEDULE, ScheduleType.PERSONAL_SCHEDULE, ScheduleType.PERSONAL_SCHEDULE, ScheduleType.PERSONAL_SCHEDULE, ScheduleType.PERSONAL_SCHEDULE};
 
-            String[] titles = {"팀 회식", "마케팅 강연", "점심약속", "팀 회식", "마케팅 강연", "점심약속"};
-            String[] notes = {"회식", "강연", "약속", "회식", "강연", "약속"};
+            String[] titles = {"Team Dinner", "Marketing Lecture", "Lunch Meeting", "Team Dinner", "Marketing Lecture", "Lunch Meeting"};
+            String[] notes = {"Dinner", "Lecture", "Meeting", "Dinner", "Lecture", "Meeting"};
 
             Long[] empIds = {1L, 1L, 2L, 3L, 3L, 3L}; // Employee ID 배열
 

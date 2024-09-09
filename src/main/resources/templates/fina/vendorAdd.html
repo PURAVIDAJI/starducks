@@ -22,7 +22,7 @@
 </style>
 
 <main layout:fragment="content">
-    <h1 class="page-title" style="margin-bottom: 50px;">| 거래처 정보 등록</h1>
+    <h1 class="page-title" style="margin-bottom: 50px;">| Vendor Info Registration</h1>
     <br>
     <div class="row g-3 align-items-center">
         <div id="form">
@@ -30,15 +30,15 @@
                 <div style="flex: 1;">
                     <form class="container" th:action="@{/fina/vendor/create}" method="post">
                         <dl>
-                            <dt>거래처명</dt>
+                            <dt>Vendor Name</dt>
                             <dd style="width: 280px;">
                                 <input class="form-control" type="text" id="vendorName" name="vendorName"
-                                       th:value="${vendorAndProductDTO.vendorName}" placeholder="거래처명를 입력해주세요" required>
+                                       th:value="${vendorAndProductDTO.vendorName}" placeholder="Please enter the Vendor Name" required>
                             </dd>
                         </dl>
 
                         <dl>
-                            <dt>업종</dt>
+                            <dt>Type</dt>
                             <dd>
                                 <select style="width: 280px;" id="businessSector" name="businessSector">
                                     <option th:each="sector : ${businessSectors}"
@@ -50,29 +50,29 @@
                         </dl>
 
                         <dl>
-                            <dt>대표자명</dt>
+                            <dt>Rep. Name</dt>
                             <dd>
                                 <input style="width: 280px;" type="text" id="vendorRepreName" name="vendorRepreName"
-                                       th:value="${vendorAndProductDTO.vendorRepreName}" placeholder="대표자명을 입력하세요"
+                                       th:value="${vendorAndProductDTO.vendorRepreName}" placeholder="Please enter the representative's name"
                                        required></dd>
                         </dl>
 
                         <dl>
-                            <dt>사업자 번호</dt>
+                            <dt>Business ID</dt>
                             <dd><input style="width: 280px;" class="form-control" type="text" id="vendorRegistNum"
                                        name="vendorRegistNum"
                                        th:value="${vendorAndProductDTO.vendorRegistNum}"
-                                       placeholder="사업자번호 10자리를 입력해주세요" required></dd>
+                                       placeholder="Please enter numbers only" required></dd>
                         </dl>
                         <dl>
-                            <dt>거래처 연락처</dt>
+                            <dt>Contact</dt>
                             <dd>
                                 <input style="width: 280px;" type="text" id="vendorTelephone" name="vendorTelephone"
-                                       placeholder="연락처를 입력해주세요" required>
+                                       placeholder="Please enter the contact info" required>
                             </dd>
                         </dl>
                         <dl>
-                            <dt>거래 시작일</dt>
+                            <dt>Trading Start Date</dt>
                             <dd><input style="width: 280px;" type="date" id="vendorStartDate" name="vendorStartDate"
                                        required>
                             </dd>
@@ -81,14 +81,14 @@
 
                 <div style="flex: 1;">
                     <dl style="display: flex">
-                        <dt>주소</dt>
+                        <dt>Address</dt>
                         <dd>
                             <div th:replace="~{fina/_vendorAddNo::searchAddr}"></div>
                         </dd>
                     </dl>
 
                     <dl style="display: flex">
-                        <dt>거래여부</dt>
+                        <dt>Trading Status</dt>
                         <dd>
                             <select style="width: 280px;" id="storeOperationalYn" name="contractStatus">
                                 <option th:each="selector : ${contractStatus}"
@@ -101,10 +101,10 @@
                 </div>
             </div>
             <div style="display: flex; justify-content: center; align-items: center;">
-                <button class="commonBtn register-button" id="submitBtn" type="submit" onclick="confirmAdd()">등록
+                <button class="commonBtn register-button" id="submitBtn" type="submit" onclick="confirmAdd()"> Register
                 </button>
                 <button class="commonBtn cancel-button" type="button" onclick="location.href='/fina/vendor/list'">
-                    목록
+                    List
                 </button>
                 </form>
             </div>

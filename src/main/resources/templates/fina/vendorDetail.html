@@ -20,7 +20,7 @@
 </style>
 
 <main layout:fragment="content">
-    <h1 class="page-title" style="margin-bottom: 50px;">| 거래처 정보 조회</h1>
+    <h1 class="page-title" style="margin-bottom: 50px;">| Vendor Info</h1>
     <br>
 
     <div id="form">
@@ -30,7 +30,7 @@
                 <form class="container">
 
                     <dl>
-                        <dt>거래처명</dt>
+                        <dt>Vendor Name</dt>
                         <dd><input style="width: 280px;" type="text" id="vendorName" name="vendorName"
                                    th:value="${vendor.vendorName}"
                                    class="form-control"
@@ -39,7 +39,7 @@
 
 
                     <dl>
-                        <dt>업종</dt>
+                        <dt>Type</dt>
                         <dd style="text-align: left"><p style="width: 280px;"
                                                         th:if="${vendor.vendorBusinessSector != null}"
                                                         th:text="${vendor.vendorBusinessSector.description}"></p>
@@ -47,21 +47,21 @@
                     </dl>
 
                     <dl>
-                        <dt>사업자 번호</dt>
+                        <dt>Business ID</dt>
                         <dd><input style="width: 280px;" class="form-control" type="text" id="vendorRegistNum"
                                    name="vendorRegistNum"
                                    th:value="${vendor.vendorRegistNum}" readonly></dd>
                     </dl>
 
                     <dl>
-                        <dt>대표자</dt>
+                        <dt>Rep. Name</dt>
                         <dd><input style="width: 280px;" type="text" id="vendorRepreName" name="vendorRepreName"
                                    th:value="${vendor.vendorRepreName}"
                                    class="form-control" readonly></dd>
                     </dl>
 
                     <dl>
-                        <dt>연락처</dt>
+                        <dt>Contact</dt>
                         <dd><input style="width: 280px;" type="text" id="vendorTelephone" name="vendorTelephone"
                                    th:value="${vendor.vendorTelephone}"
                                    class="form-control" readonly></dd>
@@ -70,14 +70,14 @@
 
             <div style="flex: 1;">
                 <dl>
-                    <dt>거래시작일</dt>
+                    <dt>Trading Start Date</dt>
                     <dd><input style="width: 280px;" type="text" id="vendorStartDate" name="vendorStartDate"
                                th:value="${vendor.vendorStartDate}" class="form-control"
                                readonly></dd>
                 </dl>
 
                 <dl>
-                    <dt>거래처 주소</dt>
+                    <dt>Address Line 1</dt>
                     <dd>
                         <input style="width: 280px;" type="text" id="vendorAddress" name="vendorAddress"
                                th:value="${vendor.vendorAddress}"
@@ -87,7 +87,7 @@
                 </dl>
 
                 <dl>
-                    <dt><label for="storeDetailAddr">상세주소</label></dt>
+                    <dt><label for="storeDetailAddr">ddress Line 2</label></dt>
                     <dd><input style="width: 280px;" type="text" id="storeDetailAddr" name="storeDetailAddr"
                                th:value="${vendor.vendorAddress}"
                                class="form-control" readonly></dd>
@@ -95,7 +95,7 @@
 
                 <!-- 계약 여부 -->
                 <dl>
-                    <dt>계약 상태</dt>
+                    <dt>Trading Status</dt>
                     <dd style="text-align: left">
                         <p style="width: 280px;" th:if="${vendor.contractStatus != null}"
                            th:text="${vendor.contractStatus.displayName}"></p>
@@ -108,10 +108,10 @@
             <button class="commonBtn edit-button" type="button"
                     th:onclick="'confirmUpdate(' + ${vendor.vendorId} + ')'"
                     style="margin-right: 10px;">
-                수정
+                Edit
             </button>
             <button class="commonBtn cancel-button" type="button" onclick="location.href='/fina/vendor/list'">
-                목록
+                List
             </button>
         </div>
         </form>
@@ -121,14 +121,14 @@
     <script>
         function confirmUpdate(vendorId) {
             Swal.fire({
-                title: '수정 확인',
-                text: '해당 정보를 수정 하시겠습니까?',
+                title: 'Update Confirmation',
+                text: 'Do you want to update this information?',
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
-                confirmButtonText: '확인',
-                cancelButtonText: '취소'
+                confirmButtonText: 'Confirm',
+                cancelButtonText: 'Cancel',
             }).then((result) => {
                 if (result.isConfirmed) {
                     // 확인을 누르면 수정 URL로 이동

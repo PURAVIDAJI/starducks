@@ -24,18 +24,18 @@
     <h1 class="page-title" style="margin-bottom: 50px;">| Employee List</h1>
     <form method="get" th:action="@{/hr/emp}" class="search" th:object="${empSearch}">
             <label for="every">All</label> <input type="radio" id="every" name="status" value="all" th:field="*{status}" checked>
-            <label for="runopt">재직</label> <input type="radio" id="runopt" name="status" value="running" th:field="*{status}">
-            <label for="stopopt">퇴사</label> <input type="radio" id="stopopt" name="status" value="stopped" th:field="*{status}">
+            <label for="runopt">Employed</label> <input type="radio" id="runopt" name="status" value="running" th:field="*{status}">
+            <label for="stopopt">Resigned</label> <input type="radio" id="stopopt" name="status" value="stopped" th:field="*{status}">
 
         <select name="sopt" style="text-align: center">
-            <option value=null th:field="*{sopt}" selected>전체</option>
-            <option value="dept" th:field="*{sopt}">부서명</option>
-            <option value="empName" th:field="*{sopt}">사원명</option>
-            <option value="email" th:field="*{sopt}">사번</option>
+            <option value=null th:field="*{sopt}" selected>All</option>
+            <option value="dept" th:field="*{sopt}">Department</option>
+            <option value="empName" th:field="*{sopt}">Employee Name</option>
+            <option value="email" th:field="*{sopt}">Employee Email</option>
         </select>
 
-        <input type="text" th:field="*{text}" class="d-inline-block" placeholder="검색어를 입력해주세요.">
-        <button class="search-button ">조회</button>
+        <input type="text" th:field="*{text}" class="d-inline-block" placeholder="Please enter a search term">
+        <button class="search-button ">Search</button>
     </form>
     <table>
         <thead>
@@ -54,11 +54,11 @@
                 <td><a th:href="@{/hr/emp/{empId}(empId=*{empId})}" th:text="*{empName}"></a></td>
                 <td th:text="*{dept.deptName}"></td>
                 <td>
-                    <p th:if="*{position.toString() == 'ROLE_EMPLOYEE'}">사원</p>
-                    <p th:if="*{position.toString() == 'ROLE_TEAMLEADER'}">팀장</p>
-                    <p th:if="*{position.toString() == 'ROLE_DEPTLEADER'}">부장</p>
-                    <p th:if="*{position.toString() == 'ROLE_BOSS'}">사장</p>
-                    <p th:if="*{position.toString() == 'ROLE_STOREMANAGER'}">점장</p>
+                    <p th:if="*{position.toString() == 'ROLE_EMPLOYEE'}">Associate</p>
+                    <p th:if="*{position.toString() == 'ROLE_TEAMLEADER'}">Team Leader</p>
+                    <p th:if="*{position.toString() == 'ROLE_DEPTLEADER'}">Department Head</p>
+                    <p th:if="*{position.toString() == 'ROLE_BOSS'}">CEO</p>
+                    <p th:if="*{position.toString() == 'ROLE_STOREMANAGER'}">Store Manager</p>
                 </td>
                 <td th:text="*{empTel}"></td>
                 <td th:text="*{email}"></td>
@@ -66,7 +66,7 @@
 
         </tbody>
     </table>
-    <a th:href="@{/hr/emp/register}"><button class="commonBtn register-button">사원등록</button></a>
+    <a th:href="@{/hr/emp/register}"><button class="commonBtn register-button">Emp-Register</button></a>
 
     <!-- 페이지네이션 -->
     <div class="pagination">

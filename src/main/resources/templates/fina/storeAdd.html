@@ -16,7 +16,7 @@
 </th:block>
 
 <main layout:fragment="content">
-    <h3>지점 관리</h3>
+    <h3>Branch Registration</h3>
     <div class="row g-3 align-items-center">
 
         <div id="form" style="display: flex;">
@@ -24,19 +24,19 @@
                 <form id="addAlert" class="container" th:action="@{/fina/store/create}" method="post"
                       onsubmit="return confirmAdd()">
                     <dl>
-                        <dt><label for="storeName" class="col-form-label">지점명</label></dt>
-                        <dd><input type="text" id="storeName" name="storeName" placeholder="지점명" class="form-control">
+                        <dt><label for="storeName" class="col-form-label">Branch Name</label></dt>
+                        <dd><input type="text" id="storeName" name="storeName" placeholder="Branch Name" class="form-control">
                         </dd>
                     </dl>
 
                     <dl>
-                        <dt><label for="businessNum">사업자 번호</label></dt>
+                        <dt><label for="businessNum">Business ID</label></dt>
                         <dd><input class="form-control" type="text" id="businessNum" name="businessNum"
-                                   placeholder="숫자만 입력해주세요"></dd>
+                                   placeholder="Please enter numbers only"></dd>
                     </dl>
 
                     <dl>
-                        <dt><label for="storeManager" class="col-form-label">지점장</label></dt>
+                        <dt><label for="storeManager" class="col-form-label">Branch Manager</label></dt>
                         <dd><select id="storeManager" name="storeManager">
                             <option th:each="sm :${storeManager}"
                                     th:value="${sm}" th:text="${sm}"></option>
@@ -44,7 +44,7 @@
                     </dl>
 
                     <dl>
-                        <dt><label for="storeOpenDate" class="col-form-label">개업일</label></dt>
+                        <dt><label for="storeOpenDate" class="col-form-label">Opening Date</label></dt>
                         <dd><input type="date" id="storeOpenDate" name="storeOpenDate"></dd>
                     </dl>
                 </form>
@@ -52,7 +52,7 @@
 
             <div style="flex: 1;">
                 <dl>
-                    <dt><label for="addNo">우편번호</label></dt>
+                    <dt><label for="addNo">Postal Code</label></dt>
                     <dd><input type="text" id="addNo" name="addNo" placeholder="우편번호"></dd>
                 </dl>
 
@@ -63,28 +63,28 @@
                 <!--                    </dd>-->
                 <!--                </dl>-->
                 <dl>
-                    <dt><label for="storeAddr">주소</label></dt>
-                    <dd><input type="text" id="storeAddr" name="storeAddr" placeholder="주소"></dd>
+                    <dt><label for="storeAddr">Address Line 1</label></dt>
+                    <dd><input type="text" id="storeAddr" name="storeAddr"></dd>
                 </dl>
 
                 <dl>
-                    <dt><label for="storeDetailAddr">상세주소</label></dt>
-                    <dd><input type="text" id="storeDetailAddr" name="storeDetailAddr" placeholder="상세주소"></dd>
+                    <dt><label for="storeDetailAddr">Address Line 2</label></dt>
+                    <dd><input type="text" id="storeDetailAddr" name="storeDetailAddr" ></dd>
                 </dl>
 
                 <dl>
-                    <dt><label for="storeOperationalYn">운영여부</label></dt>
+                    <dt><label for="storeOperationalYn">Operating Status</label></dt>
                     <dd><select id="storeOperationalYn" name="storeOperationalYn">
-                        <option value="storeOperationalY">운영</option>
-                        <option value="storeOperationalN">미운영</option>
+                        <option value="storeOperationalY">Open</option>
+                        <option value="storeOperationalN">Closed</option>
                     </select></dd>
                 </dl>
             </div>
         </div>
         <div style="display: flex; justify-content: center; align-items: center;">
-            <button class="btn btn-primary" id="submitBtn" type="submit">추가</button>
+            <button class="btn btn-primary" id="submitBtn" type="submit">Add</button>
             <button class="btn btn-secondary" type="button" onclick="location.href='/fina/store/list'">
-                목록
+                List
             </button>
         </div>
         </form>
@@ -93,14 +93,14 @@
     <script>
         function confirmAdd(storeNo) {
             Swal.fire({
-                title: '등록 확인',
-                text: '해당 정보를 등록 하시겠습니까?',
+                title: 'Registration Confirmation',
+                text: 'Do you want to register this information?',
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
-                confirmButtonText: '확인',
-                cancelButtonText: '취소'
+                confirmButtonText: 'Confirm',
+                cancelButtonText: 'Cancel'
             }).then((result) => {
                 if (result.isConfirmed) {
                     document.getElementById('addAlert').submit();

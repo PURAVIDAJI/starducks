@@ -19,19 +19,19 @@
 </style>
 
 <main layout:fragment="content">
-    <h1 class="page-title" style="margin-bottom: 50px;">| 매장 입고 목록</h1>
+    <h1 class="page-title" style="margin-bottom: 50px;">| Branch Inbound List</h1>
     <div class="content">
         <div class="right-top-btn">
-            <button class="commonBtn register-button" type="submit" onclick="handleInboundRegistration()"> 입고 등록
+            <button class="commonBtn register-button" type="submit" onclick="handleInboundRegistration()"> Register
             </button>
             <input type="hidden" th:value="${employee.getPosition()}" id="role">
         </div>
         <div class="middle-btn">
             <a th:href="@{/logistic/inbound/warehouse/list}">
-                <button class="wideBtn switch-button2"> 창고 입고</button>
+                <button class="wideBtn switch-button2"> Warehouse Inbound</button>
             </a>
             <a th:href="@{/logistic/inbound/store/list}">
-                <button class="wideBtn switch-button1"> 매장 입고</button>
+                <button class="wideBtn switch-button1"> Branch Inbound</button>
             </a>
         </div>
 
@@ -49,11 +49,11 @@
 
             <thead>
             <tr>
-                <th>입고 번호</th>
-                <th>입고 일자</th>
-                <th>입고 지점</th>
-                <th>총 입고 수량</th>
-                <th>구분</th>
+                <th>No.</th>
+                <th>Date</th>
+                <th>Branch</th>
+                <th>Total Quantity</th>
+                <th>Type</th>
             </tr>
             </thead>
             <tbody th:fragment="inboundTableBody" id="inboundTableBody">

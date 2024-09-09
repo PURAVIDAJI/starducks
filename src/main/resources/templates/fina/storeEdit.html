@@ -22,7 +22,7 @@
 </style>
 
 <main layout:fragment="content">
-    <h1 class="page-title" style="margin-bottom: 50px;">| 지점 정보 수정</h1>
+    <h1 class="page-title" style="margin-bottom: 50px;">| Edit Branch Info</h1>
     <br>
     <div id="form">
         <div style="display: flex;">
@@ -32,21 +32,21 @@
                     <input th:name="storeNo" type="hidden" th:value="${store.storeNo}">
 
                     <dl>
-                        <dt><label for="storeName" class="col-form-label">지점명</label></dt>
+                        <dt><label for="storeName" class="col-form-label">Branch Name</label></dt>
                         <dd><input style="width: 280px;" type="text" id="storeName" name="storeName" placeholder="지점명"
                                    class="form-control"
                                    th:value="${store.storeName}"></dd>
                     </dl>
 
                     <dl>
-                        <dt><label for="businessNum">사업자 번호</label></dt>
+                        <dt><label for="businessNum">Business ID</label></dt>
                         <dd><input style="width: 280px;" class="form-control" type="text" id="businessNum"
                                    name="businessNum"
-                                   placeholder="사업자 번호를 입력해주세요" th:value="${store.businessNum}" readonly></dd>
+                                   placeholder="Please enter the Business ID" th:value="${store.businessNum}" readonly></dd>
                     </dl>
 
                     <dl>
-                        <dt><label for="storeManager">지점장</label></dt>
+                        <dt><label for="storeManager">Branch Manager</label></dt>
                         <dd><select style="width: 280px;" id="storeManager" name="storeManager">
                             <option th:each="storeManager : ${storeManagers}"
                                     th:value="${storeManager}"
@@ -55,23 +55,24 @@
                     </dl>
 
                     <dl>
-                        <dt><label for="storeOpenDate" class="col-form-label">개업일</label></dt>
+                        <dt><label for="storeOpenDate" class="col-form-label">Opening Date</label></dt>
                         <dd><input style="width: 280px;" type="date" id="storeOpenDate" name="storeOpenDate"
                                    th:value="${store.storeOpenDate}"
                                    readonly></dd>
                     </dl>
-            </div>
 
-            <div style="flex: 1;">
-                <dl style="display: flex">
-                    <dt>주소</dt>
+                  </div>
+
+                <div style="flex: 1;">
+                   <dl style="display: flex">
+                     <dt>Address</dt>
                     <dd>
                         <div th:replace="~{fina/_storeAddNo::searchAddress}"></div>
                     </dd>
                 </dl>
 
                 <dl>
-                    <dt><label for="storeOperationalYn">운영여부</label></dt>
+                    <dt><label for="storeOperationalYn">Operating Status</label></dt>
                     <dd><select style="width: 280px;" id="storeOperationalYn" name="storeOperationalYn"
                                 th:field="*{store.storeOperationalYn}">
                         <option th:each="option : ${storeOperationalYn}"
@@ -83,10 +84,11 @@
             </div>
         </div>
         <div style="display: flex; justify-content: center; align-items: center;">
-            <button class="commonBtn register-button" id="submitBtn" type="submit">저장</button>
+            <button class="commonBtn register-button" id="submitBtn" type="submit">Save</button>
             <button class="commonBtn cancel-button" type="button" onclick="location.href='/fina/store/list'">
-                목록
+                List
             </button>
+
             </form>
         </div>
     </div>
@@ -94,14 +96,14 @@
     <script>
         function confirmAdd(storeNo) {
             Swal.fire({
-                title: '수정 확인',
-                text: '해당 정보를 수정 하시겠습니까?',
+                title: 'Update Confirmation',
+                text: 'Do you want to update this information?',
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
-                confirmButtonText: '확인',
-                cancelButtonText: '취소'
+                confirmButtonText: 'Confirm',
+                cancelButtonText: 'Cancel'
             }).then((result) => {
                 if (result.isConfirmed) {
                     document.getElementById('addAlert').submit();

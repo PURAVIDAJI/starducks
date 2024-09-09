@@ -19,7 +19,7 @@
 </style>
 
 <main layout:fragment="content">
-    <h1 class="page-title" style="margin-bottom: 50px;">| 매장 입고 정보 등록</h1>
+    <h1 class="page-title" style="margin-bottom: 50px;">| Branch Inbound Registration</h1>
     <div class="content">
         <form id="addForm"  action="/logistic/inbound/store/add" method="post">
 
@@ -31,22 +31,22 @@
 <!--                                th:text="${s.getStoreName()}"></option>-->
 <!--                    </select>-->
                     <div>
-                        지점 이름 :<span th:text="${store.getStoreName()}"></span>
+                        Branch Name :<span th:text="${store.getStoreName()}"></span>
                         <input type="hidden" id="store" name="storeNo" th:value="${store.getStoreNo()}">
                     </div>
 
-                <button type="submit" id="submitBtn" value="입고등록">입고등록</button>
+                <button type="submit" id="submitBtn" value="입고등록">Register</button>
                 <!-- JSON 데이터를 저장할 숨겨진 입력 필드 -->
                 <input type="hidden" id="storeInboundDtos" name="storeInboundDtos" value="">
         </form>
 
         <form id="itemForm" >
 
-            <label for="product">입고상품 : </label>
+            <label for="product">Item </label>
             <!-- 여기서 레이블은 select값의 id와 매핑시켜주어서 select와 매핑시켜주는 것이다.-->
             <select  id="product" name="productCode">
             <!-- Post를 통해서 컨트롤러로 넘어가는 것은? select의 name값이 넘어간다.-->
-                <option value="">상품 선택하세요</option>
+                <option value="">Please select an Item</option>
                 <option th:each="p :${products}"
                         th:value="${p.productCode}"
                         th:data-name="${p.productName}"
@@ -59,11 +59,11 @@
 <!--                th:data-cnt="${p.productCnt}"-->
             </select>
 
-            <label for="quantity"> 입고 수량</label>
+            <label for="quantity"> Quantity</label>
             <input type="number" id="quantity" name="inboundQuantity">
 
 <!--            <p>가격 * 수량 <span id="result"></span></p>-->
-            <button type="button" id="addBtn">추가</button>
+            <button type="button" id="addBtn">Add</button>
         </form>
 
 <!--        <ul id="contentList">-->
@@ -74,12 +74,12 @@
             <thead>
             <tr>
                 <th>No.</th>
-                <th>카테고리</th>
-                <th>품목명</th>
-                <th>가격</th>
+                <th>Category</th>
+                <th>Item Name</th>
+                <th>Price</th>
 <!--                <th>지점보유재고</th>-->
-                <th>입고 수량</th>
-                <th>삭제</th>
+                <th>Inbound Quantity</th>
+                <th>Delete</th>
 
             </tr>
             </thead>

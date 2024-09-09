@@ -4,23 +4,23 @@
 <div class="w-50 dept-table" id="info" th:fragment="info">
     <table>
         <tr>
-            <th>부서번호</th>
+            <th>Dept No.</th>
             <td th:text="${dept.deptId}"></td>
         </tr>
         <tr>
-            <th>부서명</th>
+            <th>Dept Name</th>
             <td th:text="${dept.deptName}"></td>
         </tr>
         <tr>
-            <th>대표연락처</th>
+            <th>Contact</th>
             <td th:text="${dept.deptRepTel}"></td>
         </tr>
         <tr>
-            <th>소속인원수</th>
+            <th>Employee count</th>
             <td th:text="${dept.getRunningEmp()}"></td>
         </tr>
     </table>
-    <button id="editBtn" class="commonBtn edit-button">수정</button>
-    <button th:onclick="'location.href=\'' + @{/hr/dept} + '\''" class="commonBtn cancel-button">목록</button>
-    <button th:onclick="|location.href='@{/hr/dept/delete/{deptId}(deptId=${dept.deptId})}'|" class="commonBtn delete-button">삭제</button>
+    <button id="editBtn" class="commonBtn edit-button">Edit</button>
+    <button th:onclick="'location.href=\'' + @{/hr/dept} + '\''" class="commonBtn cancel-button">List</button>
+    <button th:onclick="|location.href='@{/hr/dept/delete/{deptId}(deptId=${dept.deptId})}'|" class="commonBtn delete-button">Delete</button>
 </div>

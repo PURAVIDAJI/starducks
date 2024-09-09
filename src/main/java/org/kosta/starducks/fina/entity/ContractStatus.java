@@ -4,9 +4,9 @@ import lombok.Getter;
 
 @Getter
 public enum ContractStatus {
-    CONTRACT_ACTIVE("계약 중"),
+    CONTRACT_ACTIVE("Y"),
 
-    CONTRACT_STOPPED("계약 중지");
+    CONTRACT_STOPPED("N");
 
     private final String displayName;
 

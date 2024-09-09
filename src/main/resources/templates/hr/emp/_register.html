@@ -10,24 +10,24 @@
 </style>
 
 <th:block th:fragment="register">
-    <h1 class="page-title" style="margin-bottom: 50px;">| 사원 정보 등록</h1>
+    <h1 class="page-title" style="margin-bottom: 50px;">| Employee Registration</h1>
     <form id="form" th:action="@{/hr/emp/save}" method="post" th:object="${empDto}" onsubmit="return confirmAdd()" enctype="multipart/form-data" autocomplete="off">
         <div class="photos">
             <div class="photo">
                 <img class="img" id="profileImg" src="#" alt="Profile Image">
                 <input type="file" name="profile" id="profile" accept="image/*" style="display: none">
-                <p>프로필사진</p>
+                <p>Profile</p>
             </div>
             <div class="photo">
                 <img class="img" id="stampImg" src="#" alt="Stamp Image">
                 <input type="file" name="stamp" id="stamp" accept="image/*" style="display: none">
-                <p>도장사진</p>
+                <p>Stamp</p>
             </div>
         </div>
         <div id="formSection">
             <section>
                 <dl>
-                    <dt>사원번호</dt>
+                    <dt>Employee ID</dt>
                     <dd>
                         <input type="text" th:value="${id}" disabled>
                     </dd>
@@ -37,7 +37,7 @@
 <!--                    <dd><input type="hidden" th:field="*{pwd}" name="pwd" id="pwd"></dd>-->
 <!--                </dl>-->
                 <dl>
-                    <dt>사원이름</dt>
+                    <dt>Employee Name</dt>
                     <dd>
                         <input type="text" th:field="*{empName}">
                         <div class="error" th:if="${#fields.hasErrors('empName')}" th:errors="*{empName}"></div>
@@ -45,7 +45,7 @@
 
                 </dl>
                 <dl>
-                    <dt>연락처</dt>
+                    <dt>Phone</dt>
                     <dd>
                         <input type="text" th:field="*{empTel}">
                         <div class="error" th:each="err : ${#fields.errors('empTel')}" th:text="${err}"></div>
@@ -53,7 +53,7 @@
 
                 </dl>
                 <dl>
-                    <dt>이메일</dt>
+                    <dt>Email</dt>
                     <dd>
                         <input type="text" th:field="*{email}">
                         <div class="error" th:each="err : ${#fields.errors('email')}" th:text="${err}"></div>
@@ -61,15 +61,15 @@
 
                 </dl>
                 <dl>
-                    <dt>성별</dt>
+                    <dt>Gender</dt>
                     <dd>
-                        <label for="man">남</label> <input type="radio" id="man" name="a" value="man" th:field="*{gender}">
-                        <label for="woman">여</label>  <input type="radio" id="woman" name="a" value="woman" th:field="*{gender}">
+                        <label for="man">Male</label> <input type="radio" id="man" name="a" value="man" th:field="*{gender}">
+                        <label for="woman">Female</label>  <input type="radio" id="woman" name="a" value="woman" th:field="*{gender}">
                         <div class="error" th:each="err : ${#fields.errors('gender')}" th:text="${err}"></div>
                     </dd>
                 </dl>
                 <dl>
-                    <dt>생년월일</dt>
+                    <dt>Date of Birth</dt>
                     <dd>
                         <input type="date" th:field="*{birth}">
                     </dd>
@@ -77,10 +77,10 @@
             </section>
             <section>
                 <dl>
-                    <dt>부서</dt>
+                    <dt>Department</dt>
                     <dd>
                         <input type="checkbox" id="all1" class="selectbox box1">
-                        <label for="all1" id="allLabel1">전체<img th:src="@{/images/dropdown.png}" class="drop"></label>
+                        <label for="all1" id="allLabel1">All<img th:src="@{/images/dropdown.png}" class="drop"></label>
 
                         <ul id="options1" style="display: none">
                             <li class="option1" th:each="dept : ${depts}" th:field="${dept}" th:value="${dept.deptId}">
@@ -93,18 +93,18 @@
                 </dl>
 
                 <dl>
-                    <dt>직급</dt>
+                    <dt>Position</dt>
                     <dd>
                         <input type="checkbox" id="all2" class="selectbox box2">
-                        <label for="all2" id="allLabel2" >전체<img th:src="@{/images/dropdown.png}" class="drop"></label>
+                        <label for="all2" id="allLabel2" >All<img th:src="@{/images/dropdown.png}" class="drop"></label>
 
                         <ul id="options2" style="display: none">
                             <li class="option2" th:each="position : ${positions}" th:field="${position}" th:value="${position}">
-                                <th:block th:if="${position.toString() == 'ROLE_BOSS'}" th:text="사장"></th:block>
-                                <th:block th:if="${position.toString() == 'ROLE_DEPTLEADER'}" th:text="부장"></th:block>
-                                <th:block th:if="${position.toString() == 'ROLE_TEAMLEADER'}" th:text="팀장"></th:block>
-                                <th:block th:if="${position.toString() == 'ROLE_EMPLOYEE'}" th:text="사원"></th:block>
-                                <th:block th:if="${position.toString() == 'ROLE_STOREMANAGER'}" th:text="점장"></th:block>
+                                <th:block th:if="${position.toString() == 'ROLE_BOSS'}" th:text="CEO"></th:block>
+                                <th:block th:if="${position.toString() == 'ROLE_DEPTLEADER'}" th:text="Department Head"></th:block>
+                                <th:block th:if="${position.toString() == 'ROLE_TEAMLEADER'}" th:text="Team Leader"></th:block>
+                                <th:block th:if="${position.toString() == 'ROLE_EMPLOYEE'}" th:text="Associate"></th:block>
+                                <th:block th:if="${position.toString() == 'ROLE_STOREMANAGER'}" th:text="Store Manager"></th:block>
                             </li>
                         </ul>
                         <input id="position" type="hidden" th:field="*{position}">
@@ -113,7 +113,7 @@
                 </dl>
 
                 <dl>
-                    <dt>입사일자</dt>
+                    <dt>Date of Joining</dt>
                     <dd>
                         <input type="date" th:field="*{joinDate}">
                         <div class="error" th:each="err : ${#fields.errors('joinDate')}" th:text="${err}"></div>
@@ -122,20 +122,20 @@
                 </dl>
 
                 <dl>
-                    <dt>퇴사여부</dt>
+                    <dt>Resignation Status</dt>
                     <dd>
-                        <label for="stopped">퇴사</label> <input id="stopped" type="radio" name="a" value="true" th:field="*{status}">
-                        <label for="running">재직</label> <input id="running" type="radio" name="a" value="false" th:field="*{status}">
+                        <label for="stopped">Resigned</label> <input id="stopped" type="radio" name="a" value="true" th:field="*{status}">
+                        <label for="running">Employed</label> <input id="running" type="radio" name="a" value="false" th:field="*{status}">
                         <div class="error" th:each="err : ${#fields.errors('status')}" th:text="${err}"></div>
                     </dd>
                 </dl>
 
                 <dl>
-                    <dt>퇴사일자</dt>
+                    <dt>Date of Resignation</dt>
                     <dd><input type="date" disabled></dd>
                 </dl>
                 <dl>
-                    <dt>주소</dt>
+                    <dt>Address</dt>
                     <dd>
                         <div th:replace="~{hr/emp/_postNo::searchPost}"></div>
                     </dd>
@@ -143,8 +143,8 @@
             </section>
         </div>
         <div class="btns">
-            <button class="commonBtn register-button">등록</button>
-            <a th:href="@{/hr/emp}"><p class="commonBtn cancel-button">취소</p></a>
+            <button class="commonBtn register-button">Register</button>
+            <a th:href="@{/hr/emp}"><p class="commonBtn cancel-button">Cancel</p></a>
         </div>
     </form>
 </th:block>

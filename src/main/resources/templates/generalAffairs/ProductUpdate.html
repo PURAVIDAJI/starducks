@@ -20,7 +20,7 @@
 </style>
 
 <main layout:fragment="content">
-    <h1 class="page-title" style="margin-bottom: 50px;">| 품목 정보 수정</h1>
+    <h1 class="page-title" style="margin-bottom: 50px;">| Edit Product Info</h1>
 
     <div>
         <div id="form">
@@ -29,21 +29,21 @@
                     <form id="addAlert" th:action="@{/general/products/update/{productCode}(productCode=${product.productCode})}"
                           th:method="post" onsubmit="return confirmAdd()">
                         <dl>
-                            <dt>물품 ID :</dt>
+                            <dt>Item ID: </dt>
                             <dd><input style="width: 280px;" type="text" th:value="${product.productCode}" readonly>
                             </dd>
                         </dl>
                         <br>
 
                         <dl>
-                            <dt>물품 이름 :</dt>
+                            <dt>Item Name: </dt>
                             <dd><input style="width: 280px;" type="text" th:value="${product.productName}" readonly>
                             </dd>
                         </dl>
                         <br>
 
                         <dl>
-                            <dt><label for="productCategory">카테고리:</label></dt>
+                            <dt><label for="productCategory">Category: </label></dt>
                             <dd>
                                 <select style="width: 280px;" id="productCategory" name="productCategory">
                                     <option th:each="category : ${productCategories}"
@@ -57,7 +57,7 @@
                         <br>
 
                         <dl>
-                            <dt>판매 가격 :</dt>
+                            <dt>Price: </dt>
                             <dd><input style="width: 280px;" type="number" th:value="${product.productPrice}"
                                        name="productPrice"> 원
                             </dd>
@@ -67,7 +67,7 @@
 
                 <div style="flex: 1;">
                     <dl>
-                        <dt><label for="productUnit">단위:</label></dt>
+                        <dt><label for="productUnit">Unit: </label></dt>
                         <dd>
                             <select style="width: 280px;" id="productUnit" name="productUnit">
                                 <option th:each="unit : ${productUnit}"
@@ -79,13 +79,13 @@
                     <br>
 
                     <dl>
-                        <dt>공급 업체 :</dt>
+                        <dt>Vendor: </dt>
                         <dd><input style="width: 280px;" type="text" th:value="${product.getVendor().getVendorName()}"
                                    readonly></dd>
                     </dl>
                     <br>
                     <dl>
-                        <dt>전화 번호 :</dt>
+                        <dt>Phone: </dt>
                         <dd><input style="width: 280px;" type="text"
                                    th:value="${product.getVendor().getVendorTelephone()}"
                                    readonly></dd>
@@ -93,11 +93,11 @@
                     <br>
 
                     <dl>
-                        <dt>거래여부 :</dt>
+                        <dt>Trading Status: </dt>
                         <!-- 거래 여부 체크박스 -->
                         <dd><input type="checkbox" id="productSelling" name="productSelling"
                                    th:checked="${productSelling}"/></dd>
-                        <dd><label for="productSelling">거래 중</label></dd>
+                        <dd><label for="productSelling">Active</label></dd>
                     </dl>
                     <br>
                     </form>
@@ -106,10 +106,10 @@
             <!--    <input type="submit" value="수정완료">-->
             <div style="display: flex; justify-content: center; align-items: center;">
                 <button class="commonBtn register-button" id="submitBtn" type="button"
-                        th:onclick="'confirmAdd(' + ${product.productCode} + ')'" style="margin-right: 10px;">저장
+                        th:onclick="'confirmAdd(' + ${product.productCode} + ')'" style="margin-right: 10px;">Save
                 </button>
                 <button class="commonBtn cancel-button" type="button" onclick="location.href='/general/products/list'">
-                    목록
+                    List
                 </button>
             </div>
         </div>
@@ -118,14 +118,14 @@
         <script>
             function confirmAdd(productCode) {
                 Swal.fire({
-                    title: '저장 확인',
-                    text: '해당 정보를 수정 하시겠습니까?',
+                    title: 'Save Confirmation',
+                    text: 'Do you want to update this information?',
                     icon: 'warning',
                     showCancelButton: true,
                     confirmButtonColor: '#3085d6',
                     cancelButtonColor: '#d33',
-                    confirmButtonText: '확인',
-                    cancelButtonText: '취소'
+                    confirmButtonText: 'Confirm',
+                    cancelButtonText: 'Cancel',
                 }).then((result) => {
                     if (result.isConfirmed) {
                         document.getElementById('addAlert').submit();

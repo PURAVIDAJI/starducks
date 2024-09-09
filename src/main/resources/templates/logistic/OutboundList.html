@@ -19,11 +19,11 @@
 </style>
 
 <main layout:fragment="content">
-    <h1 class="page-title" style="margin-bottom: 50px;">| 출고 목록</h1>
+    <h1 class="page-title" style="margin-bottom: 50px;">| Warehouse Outbound List</h1>
     <div class="content">
         <div class="right-top-btn">
             <a th:href="@{/logistic/outbound/warehouse/add}">
-                <button class="commonBtn register-button" type="submit">출고 등록</button>
+                <button class="commonBtn register-button" type="submit">Register</button>
             </a>
         </div>
 <!--        <div class="middle-btn">-->
@@ -39,18 +39,18 @@
                 <input type="checkbox" id="bulkOutboundCheckbox" name="bulkOutboundCheckbox" th:checked="${checkbox}"
                        onchange="handleCheckboxClick()">
                 <input type="hidden" name="_bulkOutboundCheckbox" value="on">
-                 대량 출고
+                Bulk Outbound
             </label>
         </form>
 
         <table class="list-table">
             <thead>
             <tr>
-                <th>출고 번호</th>
-                <th>출고 일자</th>
-                <th>담당자</th>
-                <th>총 츨고수량</th>
-                <th>구분</th>
+                <th>No.</th>
+                <th>Date</th>
+                <th>Registered By</th>
+                <th>Total Quantity</th>
+                <th>Type</th>
             </tr>
             </thead>
             <tbody th:fragment="outboundTableBody" id="outboundTableBody">

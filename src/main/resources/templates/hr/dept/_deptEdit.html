@@ -4,27 +4,27 @@
     <form th:action="@{/hr/dept/edit}" method="post">
         <table>
             <tr>
-                <th>부서번호</th>
+                <th>Dept No</th>
                 <td>
                     <input type="text" th:value="${dept.deptId}" disabled>
                     <input type="hidden" name="deptId" id="deptId" th:field="${dept.deptId}">
                 </td>
             </tr>
             <tr>
-                <th>부서명</th>
+                <th>Dept Name</th>
                 <td><input type="text" name="deptName" id="deptName" th:field="${dept.deptName}"></td>
             </tr>
             <tr>
-                <th>대표연락처</th>
+                <th>Contact</th>
                 <td><input type="text" name="deptRepTel" id="deptRepTel" th:field="${dept.deptRepTel}"></td>
             </tr>
             <tr>
-                <th>소속인원수</th>
+                <th>Employee count</th>
                 <td th:text="${dept.emps.size()}"></td>
             </tr>
         </table>
-        <button id="cancelBtn" class="commonBtn cancel-button">취소</button>
-        <button type="submit" id="saveBtn" class="commonBtn register-button">저장</button>
+        <button id="cancelBtn" class="commonBtn cancel-button">Cancel</button>
+        <button type="submit" id="saveBtn" class="commonBtn register-button">Save</button>
     </form>
 </div>
 </html>

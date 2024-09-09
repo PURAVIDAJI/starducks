@@ -4,12 +4,12 @@ import lombok.Getter;
 
 @Getter
 public enum VendorBusinessSector {
-    COFFEEBEANSUPPLIERS("원두 공급업체"),
-    ROASTINGCOMPANIES("로스팅 회사"),
-    PACKAGINGANDDISTRIBUTIONCOMPANIES("포장 및 유통 업체"),
-    MACHINERYANDEQUIPMENTSUPPLIERS("기계 및 장비 공급업체"),
-    FARMINGANDCULTIVATION("재배 농장"),
-    RELATEDSERVICEPROVIDERS("관련 서비스 제공업체");
+    COFFEEBEANSUPPLIERS("Coffee Bean Suppliers"),
+    ROASTINGCOMPANIES("Roasting Companies"),
+    PACKAGINGANDDISTRIBUTIONCOMPANIES("Packaging & Distribution"),
+    MACHINERYANDEQUIPMENTSUPPLIERS("Machinery & Equipment Suppliers"),
+    FARMINGANDCULTIVATION("Farms"),
+    RELATEDSERVICEPROVIDERS("Service Providers");
 
     private final String description;
 

@@ -18,7 +18,7 @@
 </style>
 
 <main layout:fragment="content">
-    <h1 class="page-title" style="margin-bottom: 50px;">| 매장 재고 수정</h1>
+    <h1 class="page-title" style="margin-bottom: 50px;">| Branch Inventory Update</h1>
 
     <div class="content">
         <form th:action="@{/logistic/stock/store/update/{productCode}/{storeNo}(productCode=${inventory.getProduct().productCode},storeNo=${inventory.getStore().getStoreNo()})}" th:method="post" class="inventoryUpdate-form">
@@ -29,45 +29,45 @@
                 <table class="vertical-table">
                     <tbody>
                     <tr>
-                        <th>품목 ID</th>
+                        <th>Item ID</th>
                         <td th:text="${inventory.getProduct().getProductCode()}">p.productCode</td>
 <!--                        <input type="hidden" th:value="${inventory.getProduct().productCode }" name="productCode" id="productCode">-->
 <!--                        <input type="hidden" th:value="${inventory.getStore().getStoreNo()}" name="storeNo">-->
 
                     </tr>
                     <tr>
-                        <th>카테고리</th>
+                        <th>Category</th>
                         <td th:text="${inventory.getProduct().productCategory}">카테고리</td>
                     </tr>
                     <tr>
-                        <th>품목 이름</th>
+                        <th>Item Name</th>
                         <td th:text="${inventory.getProduct().productName}">p.productCode</td>
                     </tr>
                     <tr>
-                        <th>품목 가격</th>
+                        <th>Item Price</th>
 <!--                        <td th:text="${inventory.getProduct().productPrice}">p.productCode</td>-->
                         <td th:text="${#numbers.formatDecimal(inventory.getProduct().productPrice, 0, 'COMMA', 0, 'POINT') + ' 원'}"></td>
                     </tr>
                     <tr>
-                        <th>품목 단위</th>
+                        <th>Item Unit</th>
                         <td th:text="${inventory.getProduct().productUnit}">p.productCode</td>
                     </tr>
                     <tr>
-                        <th>매장 이름</th>
+                        <th>Branch Name</th>
                         <td th:text="${inventory.getStore().getStoreName()}">p.productCode</td>
                     </tr>
                     <tr>
-                        <th>매장 담당자</th>
+                        <th>Branch Manager</th>
                         <td th:text="${inventory.getStore().getEmployee().getEmpName()}">p.productCode</td>
                     </tr>
                     <tr>
-                        <th>매장 재고 수량</th>
+                        <th>Branch Stock</th>
                         <td>
                         <input style="text-align: center; color: #b81414;" type="number" th:value="${inventory.getInventoryCnt()}" name="inventoryCnt">
                         </td>
                     </tr>
                     <tr>
-                        <th>최근 입고일</th>
+                        <th>Recent Inbound Date</th>
                         <td th:if="${inventory.getModifiedAt() != null}" th:text="${#temporals.format(inventory.getModifiedAt(),'yyyy.MM.dd a hh:mm')}"></td>
                         <td th:if="${inventory.getModifiedAt() == null}" th:text="${#temporals.format(inventory.getCreatedAt(),'yyyy.MM.dd a hh:mm')}"></td>
                     </tr>
@@ -76,9 +76,9 @@
             </div>
 
             <div class="bottom-button">
-                <button type="submit" class="commonBtn edit-button"> 수정</button>
+                <button type="submit" class="commonBtn edit-button"> Edit</button>
                 <a th:href="@{/logistic/stock/store/info/{code}/{no}(code=${inventory.getProduct().productCode},no=${inventory.getStore().getStoreNo()})}">
-                    <button type="button" class="commonBtn cancel-button" >목록</button>
+                    <button type="button" class="commonBtn cancel-button" >List</button>
                 </a>
             </div>
         </form>

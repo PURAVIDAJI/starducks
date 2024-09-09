@@ -4,7 +4,7 @@ import lombok.Getter;
 
 @Getter
 public enum StoreOperationalYn {
-    storeOperationalY("운영"), storeOperationalN("미운영");
+    storeOperationalY("Open"), storeOperationalN("Closed");
 
     private final String description;
 
